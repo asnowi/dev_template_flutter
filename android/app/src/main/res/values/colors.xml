@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#5677FC</color>
+    <color name="colorPrimaryDark">#5677FC</color>
+    <color name="colorAccent">#383431</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="trans">#00000000</color>
+
+    <color name="toast_bg">#5677FC</color>
+
+    <color name="line">#E9E9E9</color>
+
+    <color name="confirm_text">#5677FC</color>
+    <color name="cancel_text">#696969</color>
+
+</resources>

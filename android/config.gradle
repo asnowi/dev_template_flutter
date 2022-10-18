@@ -1,0 +1,13 @@
+ext {
+    android = [
+            applicationId    : "com.maple.dev_template_flutter",
+            compileSdk       : 33,
+            buildToolsVersion: "33.0.0",
+            minSdk           : 21,
+            targetSdk        : 33,
+
+            /****** app 版本号 *****/
+            versionCode      : 100,
+            versionName      : "1.0.0",
+    ]
+}
