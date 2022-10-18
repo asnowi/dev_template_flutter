@@ -4,7 +4,6 @@ import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/http/http.dart';
 import 'package:dev_template_flutter/common/service/service.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
