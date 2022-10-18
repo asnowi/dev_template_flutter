@@ -1,5 +1,9 @@
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/pages/home/home.dart';
+import 'package:dev_template_flutter/pages/login/login.dart';
+import 'package:dev_template_flutter/pages/splash/splash.dart';
 import 'package:dev_template_flutter/pages/unknown/unknown.dart';
+import 'package:dev_template_flutter/pages/welcome/welcome.dart';
 import 'package:get/get.dart';
 
 
@@ -20,8 +24,8 @@ class AppPages {
     /// 启动页
     GetPage(
         name: INITIAL,
-        page: () => IndexView(),
-        binding: IndexBinding()
+        page: () => SplashView(),
+        binding: SplashBinding()
     ),
 
     /// 欢迎页
@@ -41,57 +45,14 @@ class AppPages {
       transitionDuration: _transitionDuration
     ),
 
-    /// 蓝牙页
-    GetPage(
-        name: AppRoutes.BLUETOOTH,
-        page: () => BluetoothView(),
-        binding: BluetoothBinding(),
-        transition: Transition.fadeIn,
-    ),
-
-    /// Web
-    GetPage(
-      name: AppRoutes.WEB,
-      page: () => WebView(),
-      binding: WebBinding(),
-      transition: Transition.fadeIn,
-    ),
-
-   //// 测试
-   GetPage(
-        name: AppRoutes.TEST,
-        page: () => TestView(),
-        binding: TestBinding(),
-        transition: Transition.fadeIn
-   ),
 
     /// 首页
     GetPage(
         name: AppRoutes.HOME,
         page: () => HomeView(),
         binding: HomeBinding(),
-        bindings: [YouBinding(),PushBinding(),MessageBinding(),MineBinding()],
         children: [
-          GetPage(
-              name: AppRoutes.HOME_YOU,
-              page: () => YouView(),
-              binding: YouBinding()
-          ),
-          GetPage(
-              name: AppRoutes.HOME_PUSH,
-              page: () => PushView(),
-              binding: PushBinding()
-          ),
-          GetPage(
-              name: AppRoutes.HOME_MESSAGE,
-              page: () => MessageView(),
-              binding: MessageBinding()
-          ),
-          GetPage(
-              name: AppRoutes.HOME_MINE,
-              page: () => MineView(),
-              binding: MineBinding()
-          ),
+
         ]
     ),
   ];
