@@ -9,9 +9,8 @@ class SplashView extends BaseGetView<SplashController>{
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('启动页')),
+    return Scaffold(
+      body: Container(),
     );
   }
-
 }
