@@ -1,10 +1,8 @@
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/tab/tab.dart';
-import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
-import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
 import 'package:flutter/services.dart';
-
 
 import 'home.dart';
 
@@ -13,26 +11,6 @@ class HomeView extends BaseGetView<HomeController> {
   HomeView({super.key});
 
   DateTime? _popTime;
-
-  final List<Widget> _pageList = [
-    MainView(),
-    MineView(),
-  ];
-
-  final List<String> _tabActive = [
-    AssetsProvider.iconPath('nav_main_active'),
-    AssetsProvider.iconPath('nav_mine_active'),
-  ];
-
-  final List<String> _tabNormal = [
-    AssetsProvider.iconPath('nav_main_normal'),
-    AssetsProvider.iconPath('nav_mine_normal'),
-  ];
-
-  final List<String> _tabLable = [
-    '首页',
-    '我的',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -60,19 +38,16 @@ class HomeView extends BaseGetView<HomeController> {
   }
 
   Widget _buildPageView() {
-    return GetBuilder<HomeController>(
-        id: 'navigator',
-        builder: (_) => PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            //横向滑动切换
-            scrollDirection: Axis.horizontal,
-            controller: controller.pageController,
-            children: _pageList,
-            onPageChanged: (page) {
-              LogUtils.GGQ('page-->>>:${page}');
-              controller.onChangePage(page);
-            })
-    );
+    return PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        //横向滑动切换
+        scrollDirection: Axis.horizontal,
+        controller: controller.pageController,
+        children: controller.pageList,
+        onPageChanged: (page) {
+          LogUtils.GGQ('page-->>>:${page}');
+          controller.onChangePage(page);
+        });
   }
 
   BottomAppBar _buildBottomAppBar(BuildContext context) {
@@ -84,14 +59,14 @@ class HomeView extends BaseGetView<HomeController> {
       shape: const CustomCircularNotchedRectangle(),
       child: Row(
         children: [
-          SizedBox(height: 52.h, width: itemWidth, child: _buildItemBar(0)),
-          SizedBox(height: 52.h, width: itemWidth, child: _buildItemBar(1)),
+          SizedBox(height: 48.h, width: itemWidth, child: _buildItemBar<BadgeNoneModel>(0,const ValueKey<String>('nav_main'))),
+          SizedBox(height: 48.h, width: itemWidth, child: _buildItemBar<BadgeMineModel>(1,const ValueKey<String>('nav_mine'))),
         ],
       ),
     );
   }
 
-  Widget _buildItemBar(int index) {
+  Widget _buildItemBar<T extends BadgerProviderModel>(int index,ValueKey<String> badgeKey) {
     return MaterialButton(onPressed: (){
       controller.onJumpToPage(index);
     },
@@ -99,25 +74,36 @@ class HomeView extends BaseGetView<HomeController> {
         highlightColor: Colors.blueGrey.shade50,
         elevation: 4.0,
         shape: const CircleBorder(),
-        child: _buildItemBox(index)
+        child: _buildItemBox<T>(index,badgeKey)
     );
   }
 
-  Widget _buildItemBox(int index) {
+  Widget _buildItemBox<T extends BadgerProviderModel>(int index,ValueKey<String> badgeKey) {
     return Center(
       child: GetBuilder<HomeController>(
         id: 'navigator',
-        builder: (_) => Container(
-          width: 48.w, height: 48.h,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              controller.currentIndex == index ? Image.asset(_tabActive[index], width: 22.w, height: 22.h): Image.asset(_tabNormal[index], width: 22.w, height: 22.h),
-              controller.currentIndex == index? Text(_tabLable[index],style: TextStyle(fontSize: 14.sp,color: Colors.blue)): Text(_tabLable[index],style: TextStyle(fontSize: 14.sp,color: Colors.grey)),
-            ],
-          )
-        ),
-      ),
+        builder: (_) => BadgeView<T>(
+            badgeKey,
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  _buildIcon(index),
+                  _buildLabel(index),
+                ],
+              ),
+            )
+        )
+      )
     );
   }
+
+  Widget _buildIcon(int index) {
+    return Image.asset(controller.tabIcon[index], width: 22.w, height: 22.h,color: controller.currentIndex == index ? Colors.blue: Colors.grey);
+  }
+
+  Widget _buildLabel(int index) {
+    return Text(controller.tabLabel[index],style: TextStyle(fontSize: 12.sp,color: controller.currentIndex == index ? Colors.blue : Colors.grey));
+  }
+
 }

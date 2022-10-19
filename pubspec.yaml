@@ -82,6 +82,8 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   # webView
   webview_flutter: ^3.0.4
+  # 徽章
+  badges: ^2.0.3
 
 
 dev_dependencies:

@@ -8,7 +8,9 @@ class MainView extends BaseGetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('main'),
+      child: TextButton(onPressed: (){
+        controller.onBadgeChange(context,null);
+      }, child: Text('首页')),
     );
   }
 }

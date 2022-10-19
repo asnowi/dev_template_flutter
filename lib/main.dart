@@ -8,11 +8,19 @@ import 'package:dev_template_flutter/common/values/values.dart';
 import 'package:dev_template_flutter/common/widget/refresh/page_config.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import 'common/widget/badge/badge.dart';
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   await Global.init();
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(providers: [
+        ChangeNotifierProvider(create: (_) => BadgerProviderModel()),
+        ChangeNotifierProvider(create: (_) => BadgeNoneModel()),
+        ChangeNotifierProvider(create: (_) => BadgeMineModel()),
+      ],child: const MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {

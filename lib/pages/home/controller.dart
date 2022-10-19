@@ -1,6 +1,8 @@
 
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
+import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
 
 class HomeController extends BaseGetController with GetSingleTickerProviderStateMixin{
 
@@ -8,6 +10,30 @@ class HomeController extends BaseGetController with GetSingleTickerProviderState
 
   int currentIndex = 0;
 
+  final List<Widget> pageList = [
+    MainView(),
+    MineView(),
+  ];
+
+  final List<String> tabActive = [
+    AssetsProvider.iconPath('nav_main_active'),
+    AssetsProvider.iconPath('nav_mine_active'),
+  ];
+
+  final List<String> tabNormal = [
+    AssetsProvider.iconPath('nav_main_normal'),
+    AssetsProvider.iconPath('nav_mine_normal'),
+  ];
+
+  final List<String> tabIcon = [
+    AssetsProvider.iconPath('nav_main_active'),
+    AssetsProvider.iconPath('nav_mine_active'),
+  ];
+
+  final List<String> tabLabel = [
+    '首页',
+    '我的',
+  ];
 
 
   @override
@@ -33,6 +59,7 @@ class HomeController extends BaseGetController with GetSingleTickerProviderState
   // 切换视图
   void onJumpToPage(int index) {
     pageController.animateToPage(index, duration: const Duration(milliseconds: 50), curve: Curves.linear);
+    onChangePage(index);
   }
 
   @override
