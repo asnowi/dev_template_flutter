@@ -13,6 +13,7 @@ class SplashController extends BaseGetController{
   void launchTarget() {
     if(ConfigService.to.isHomeOpen) {
       Get.offAndToNamed(AppRoutes.HOME);
+      // Get.offAndToNamed(AppRoutes.WELCOME);
     } else {
       Get.offAndToNamed(AppRoutes.WELCOME);
     }

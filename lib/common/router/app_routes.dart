@@ -5,9 +5,7 @@ abstract class AppRoutes {
   static const WELCOME = '/welcome';
   static const LOGIN = '/login';
   static const HOME = '/home';
-  static const HOME_YOU = '/home/you';
-  static const HOME_MESSAGE = '/home/message';
-  static const HOME_PUSH = '/home/push';
+  static const HOME_MAIN = '/home/main';
   static const HOME_MINE = '/home/mine';
 
   static const SETTING = '/setting';

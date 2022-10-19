@@ -5,6 +5,10 @@ class AssetsProvider{
     return 'assets/images/$name.$type';
   }
 
+  static String iconPath(String name,{String type = 'png'}){
+    return 'assets/icons/$name.$type';
+  }
+
   ///本地json动画
   static String lottiePath(String name){
     return 'assets/json/$name.json';
