@@ -1,3 +1,4 @@
+import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/langs/langs.dart';
 import 'package:dev_template_flutter/common/router/router.dart';
@@ -9,7 +10,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void main() {
+Future<void> main() async {
+  await Global.init();
   runApp(const MyApp());
 }
 
@@ -56,7 +58,7 @@ class MyApp extends StatelessWidget {
         return PageConfig.buildRefreshConfig(
           GetMaterialApp(
             navigatorKey: navigatorKey,
-            title: '最右',
+            title: 'dev-app',
             debugShowCheckedModeBanner: false,
             theme: AppThemes.light,
             initialRoute: AppPages.INITIAL,

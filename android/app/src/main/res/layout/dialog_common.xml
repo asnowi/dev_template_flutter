@@ -33,13 +33,11 @@
 
             <TextView
                 android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="62dp"
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:text="content" />
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
@@ -54,27 +52,27 @@
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
             android:background="@drawable/selector_common_left"
             android:textColor="@color/cancel_text"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="取消" />
 
         <View
             android:layout_width="0.5dp"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:background="@color/line" />
 
         <Button
             android:id="@+id/btn_confirm"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
             android:background="@drawable/selector_common_right"
             android:textColor="@color/confirm_text"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="确定" />
 
