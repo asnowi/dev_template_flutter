@@ -25,11 +25,6 @@ class HomeController extends BaseGetController with GetSingleTickerProviderState
     AssetsProvider.iconPath('nav_mine_normal'),
   ];
 
-  final List<String> tabIcon = [
-    AssetsProvider.iconPath('nav_main_active'),
-    AssetsProvider.iconPath('nav_mine_active'),
-  ];
-
   final List<String> tabLabel = [
     '首页',
     '我的',

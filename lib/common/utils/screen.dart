@@ -43,3 +43,8 @@ double getWidth() {
 double getHeight() {
   return ScreenUtil().screenHeight;
 }
+
+/// 填充屏幕
+Size screenSize() {
+  return Size(getWidth(), getHeight());
+}

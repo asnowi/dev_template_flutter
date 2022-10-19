@@ -99,7 +99,8 @@ class HomeView extends BaseGetView<HomeController> {
   }
 
   Widget _buildIcon(int index) {
-    return Image.asset(controller.tabIcon[index], width: 22.w, height: 22.h,color: controller.currentIndex == index ? Colors.blue: Colors.grey);
+    // return Image.asset(controller.tabIcon[index], width: 24.w, height: 24.h,color: controller.currentIndex == index ? Colors.blue: Colors.grey);
+    return Image.asset(controller.currentIndex == index? controller.tabActive[index]: controller.tabNormal[index], width: 24.w, height: 24.h);
   }
 
   Widget _buildLabel(int index) {
