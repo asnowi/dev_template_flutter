@@ -1,6 +1,7 @@
 import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/db/db.dart';
+import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 
@@ -20,7 +21,10 @@ class MineController extends BaseGetController{
 
 
   void onLogin() {
-    user.value = User(userId: '1',phone: '13777777777',username: 'ggq',token: '1234567890',avatarImg: '');
+    // user.value = User(userId: '1',phone: '13777777777',username: 'ggq',token: '1234567890',avatarImg: '');
+    Get.toNamed(AppRoutes.LOGIN)?.then((value) => {
+      LogUtils.GGQ('====onLogin====>>${value.toString()}')
+    });
   }
 
   void onLogout() {
