@@ -90,7 +90,7 @@ class LoginView extends BaseGetView<LoginController> {
                 fontSize: 16,
                 color: Colors.grey,
               ),
-              prefixIcon: const Icon(Ionicons.phone_portrait_outline,color: Colors.blueAccent,size: 16),
+              prefixIcon: const Icon(Ionicons.tablet_portrait_sharp,color: Colors.blueAccent,size: 16),
               suffixIcon: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 300),
                 child: controller.isAccount? IconButton(icon: const Icon(Icons.close,color: Colors.blueAccent, size: 16), onPressed: (){
@@ -177,7 +177,7 @@ class LoginView extends BaseGetView<LoginController> {
   }
 
   Widget _buildLogin() {
-    return Text('登录');
+    return controller.loadingButton;
   }
   
   Widget _buildContent() {

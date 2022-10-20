@@ -1,6 +1,7 @@
 
 class DioResponse<Object> {
 
+
   /// 自定义code(可根据内部定义方式)
   final int? code;
   /// 消息(例如成功消息文字/错误消息文字)
@@ -15,6 +16,13 @@ class DioResponse<Object> {
     this.data,
   });
 
+  static DioResponse getResponse(String data) {
+    return DioResponse<String>(
+      code: 200,
+      message: '操作成功',
+      data: data
+    );
+  }
 
   @override
   String toString() {

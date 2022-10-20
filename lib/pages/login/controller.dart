@@ -1,9 +1,13 @@
 
+import 'package:dev_template_flutter/common/api/api.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/toast.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 
 class LoginController extends BaseGetController{
+
+  late LoadingButton loadingButton;
 
   final TextEditingController accountController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -39,5 +43,74 @@ class LoginController extends BaseGetController{
 
   void onFinish() {
     Get.back(result: {'result': false});
+  }
+
+
+  @override
+  void onInit() {
+    loadingButton = LoadingButton(text: '登录', width: 0.82.sw,height: 52.h,textStyle: TextStyle(fontSize: 16.sp,color: Colors.white,fontWeight: FontWeight.normal,fontFamily: 'FZDaLTJ'),onPressed: (BuildContext context) {
+      final String account = accountController.text;
+      if(account.isEmpty) {
+        ToastUtils.show('请输入账号!');
+        return;
+      }
+      final String password = passwordController.text;
+      if(password.isEmpty) {
+        ToastUtils.show('请输入密码!');
+        return;
+      }
+
+      if(!isAgree){
+        ToastUtils.show('请阅读并同意用户使用协议和隐私条款!');
+        return;
+      }
+
+      KeyboardUtils.hideKeyboard();
+      loadingButton.onLoading();
+      LogUtils.GGQ('--账号:--->${account}');
+      LogUtils.GGQ('--密码:--->${password}');
+      FocusScope.of(context).unfocus();
+
+      ApiService.login(account, password).then((value) async{
+        LogUtils.GGQ('------登录结果:------>>>${value}');
+        if(ResponseUtils.isSuccess(value.code)) {
+
+        }
+      }).whenComplete(() => {
+        loadingButton.onCancel()
+      });
+
+      // ApiService.login(account, password).then((value) async{
+      //   LogUtils.GGQ('------登录结果:------>>>${value}');
+      //   if(ResponseUtils.isSuccess(value.code)) {
+      //     final entity = LoginEntity.fromJson(value.data['user']);
+      //     final User user = User();
+      //     user.userId = entity.userId;
+      //     user.token = entity.token;
+      //     user.username = entity.username;
+      //     user.phone = entity.phone;
+      //     user.avatarImg = entity.avatarUrl;
+      //
+      //     StorageUtil().setJSON(SaveInfoKey.TOKEN, entity.token);
+      //
+      //     LogUtils.GGQ('------登录结果:------>>>${user.username}');
+      //     LogUtils.GGQ('------登录结果:------>>>${entity.username}');
+      //
+      //     final int? result = await Global.dbUtil?.saveUser(user);
+      //     if(result != null && result >= 0) {
+      //       Global.user = Global.dbUtil?.getUser();
+      //       EventBusUtils.send<CommonEvent>(CommonEvent(EventCode.EVENT_LOGIN));
+      //       Get.back();
+      //     } else {
+      //       ToastUtils.showBar('保存用户信息失败！');
+      //     }
+      //   } else {
+      //     ToastUtils.showBar(ResponseUtils.getMessage(value.message));
+      //   }
+      // }).whenComplete(() => {
+      //   loadingButton.onCancel()
+      // });
+    });
+    super.onInit();
   }
 }

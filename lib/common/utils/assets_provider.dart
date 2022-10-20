@@ -1,3 +1,7 @@
+import 'package:dev_template_flutter/common/http/http.dart';
+import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:flutter/services.dart' show rootBundle;
+
 class AssetsProvider{
 
   ///本地图片路径
@@ -23,4 +27,13 @@ class AssetsProvider{
   static String loadVideo(String name, {String type = 'mp4'}){
     return 'assets/video/$name.$type';
   }
+
+  static Future<DioResponse> loadData(String fileName) async{
+     String data = await rootBundle.loadString('assets/data/$fileName.json');
+     await DelayedUtils.delayed(() {
+       LogUtils.GGQ('loading...');
+     });
+    return Future(() => DioResponse.getResponse(data));
+  }
+
 }
