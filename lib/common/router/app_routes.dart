@@ -20,6 +20,7 @@ abstract class AppRoutes {
 
   static const TEST = '/test';
   static const UNKNOWN = '/unknown';
+  static const ERROR = '/error';
 
 
 

@@ -1,4 +1,5 @@
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/pages/error/error.dart';
 import 'package:dev_template_flutter/pages/home/home.dart';
 import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
 import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
@@ -66,6 +67,16 @@ class AppPages {
               binding: MineBinding()
           ),
         ]
+    ),
+
+
+    /// 错误页
+    GetPage(
+      name: AppRoutes.ERROR,
+      page: () => ErrorView(),
+      binding: ErrorBinding(),
+      transition: Transition.downToUp,
+      transitionDuration: _transitionDuration
     ),
   ];
 

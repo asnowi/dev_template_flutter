@@ -37,7 +37,7 @@ class ConfigService extends GetxService{
   void onInit() async{
     isHomeOpen = StorageUtil().getBool(SaveInfoKey.FIRST_OPEN)?? false;
     LogUtils.GGQ('isHomeOpen-->${isHomeOpen}');
-    Global.user = Global.dbUtil?.getUser();
+    Global.user = await Global.dbUtil?.getUser();
     LogUtils.GGQ('user-->${Global.user?.toString()}');
     super.onInit();
   }

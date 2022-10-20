@@ -21,4 +21,5 @@ export 'uiutils.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
+export 'package:ionicons/ionicons.dart';
 

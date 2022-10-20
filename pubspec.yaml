@@ -84,6 +84,8 @@ dependencies:
   webview_flutter: ^3.0.4
   # 徽章
   badges: ^2.0.3
+  # 常用图标
+  ionicons: ^0.2.1
 
 
 dev_dependencies:

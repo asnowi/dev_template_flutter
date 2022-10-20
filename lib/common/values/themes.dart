@@ -6,7 +6,7 @@ class AppThemes {
   static ThemeData light = ThemeData(
     // colorScheme: const ColorScheme.light(
     // redAccent
-      scaffoldBackgroundColor: Colors.grey.shade100,
+      scaffoldBackgroundColor: Colors.white,
       colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.light,
           seedColor: Colors.white60,
@@ -18,7 +18,7 @@ class AppThemes {
   static ThemeData dark = ThemeData(
     // colorScheme: const ColorScheme.dark(
     // ),
-    scaffoldBackgroundColor: Colors.black54,
+    scaffoldBackgroundColor: Colors.black,
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: Colors.black87,

@@ -42,7 +42,7 @@ class DBUtil{
     return Global.dbUtil?.userBox.add(user);
   }
 
-  User? getUser(){
+  Future<User?> getUser() async{
     final users = Global.dbUtil?.userBox.values;
     if(users != null && users.isNotEmpty){
       return users.last;
