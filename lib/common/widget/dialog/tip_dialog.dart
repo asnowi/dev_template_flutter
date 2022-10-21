@@ -26,19 +26,19 @@ class TipDialog extends BaseDialog{
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(18.0))),
         child: Container(
             width: getWidth(),
-            height: 0.20.sh,
+            height: 0.21.sh,
             child: Column(
               children: [
                 Expanded(
-                  flex: 8,
+                  flex: 3,
                   child: Container(
-                      alignment: Alignment.center,
+                      alignment: Alignment.bottomCenter,
                       decoration: const BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(18.0))),
                       child: Text(title?? '温馨提示',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),)
                   ),
                 ),
                 Expanded(
-                  flex: 9,
+                  flex: 5,
                   child: Container(
                     alignment: Alignment.center,
                     child: SingleChildScrollView(
@@ -49,7 +49,7 @@ class TipDialog extends BaseDialog{
                 ),
                 const Divider(height: .2,color: Colors.grey,thickness: .2),
                 Expanded(
-                  flex: 9,
+                  flex: 4,
                   child: Container(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,7 +64,7 @@ class TipDialog extends BaseDialog{
                                     )),
                                   ),
                                   onPressed: onConfirm,
-                                  child: Text(confirm?? '确定',style: const TextStyle(fontSize: 14, color: Colors.blue))
+                                  child: Text(confirm?? '确定',style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold))
                               )
                           ),
                           const VerticalDivider(width: .2,color: Colors.grey,thickness: .2),
@@ -78,7 +78,7 @@ class TipDialog extends BaseDialog{
                                 )),
                               ),
                               onPressed: onCancel?? dismiss,
-                              child: Text(cancel?? '取消', style: const TextStyle(fontSize: 14, color: Colors.blue)),
+                              child: Text(cancel?? '取消', style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
                             ),)
                         ],
                       )
