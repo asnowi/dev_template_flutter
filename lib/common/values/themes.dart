@@ -12,7 +12,7 @@ class AppThemes {
         centerTitle: true,
         elevation: 0.5,
         backgroundColor: Colors.white,
-        titleTextStyle: AppStyles.titleStyle,
+        titleTextStyle: AppStyles.titleStyleLight,
       ),
       colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.light,
@@ -29,7 +29,7 @@ class AppThemes {
       centerTitle: true,
       elevation: 0.5,
       backgroundColor: Colors.black,
-      titleTextStyle: AppStyles.titleStyle,
+      titleTextStyle: AppStyles.titleStyleDark,
     ),
     scaffoldBackgroundColor: Colors.black,
     colorScheme: ColorScheme.fromSeed(

@@ -11,7 +11,7 @@ class UserInfoView extends BaseGetView<UserInfoController>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('个人信息',style: AppStyles.titleStyle,),
+        title: Text('个人信息'),
       ),
       body: Center(child: Text('用户页')),
     );
