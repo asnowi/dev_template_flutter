@@ -6,6 +6,7 @@ import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
 import 'package:dev_template_flutter/pages/login/login.dart';
 import 'package:dev_template_flutter/pages/splash/splash.dart';
 import 'package:dev_template_flutter/pages/unknown/unknown.dart';
+import 'package:dev_template_flutter/pages/userInfo/userInfo.dart';
 import 'package:dev_template_flutter/pages/welcome/welcome.dart';
 import 'package:get/get.dart';
 
@@ -69,6 +70,13 @@ class AppPages {
         ]
     ),
 
+    /// 用户详情
+    GetPage(
+      name: AppRoutes.USER_INFO,
+      page: () => UserInfoView(),
+      binding: UserInfoBinding(),
+      transition: Transition.fadeIn,
+    ),
 
     /// 错误页
     GetPage(

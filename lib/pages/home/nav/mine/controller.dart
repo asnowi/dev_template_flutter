@@ -45,6 +45,6 @@ class MineController extends BaseGetController{
   }
 
   void onUserInfo() {
-    ToastUtils.show('个人信息');
+    Get.toNamed(AppRoutes.USER_INFO);
   }
 }
