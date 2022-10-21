@@ -220,20 +220,22 @@ class LoginView extends BaseGetView<LoginController> {
     return Positioned(
       bottom: 10.h,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 2),
         alignment: Alignment.bottomCenter,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(6),
-              child: InkWell(
-                onTap: (){
-                },
-                splashColor: Colors.blue[50],
-                focusColor: Colors.blue[50],
-                highlightColor: Colors.blue[50],
+            SizedBox(
+              width: 32,
+              height: 32,
+              child: MaterialButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => controller.setAgree(!controller.isAgree),
+                splashColor: Colors.blueGrey.shade100,
+                highlightColor: Colors.blueGrey.shade50,
+                elevation: 4.0,
+                shape: const CircleBorder(),
                 child: GetBuilder<LoginController>(
                   id: 'agree',
                   builder: (_) => controller.isAgree? const Icon(Icons.radio_button_on,size: 18,color: Colors.blueAccent,): const Icon(Icons.radio_button_on,size: 18,color: Colors.grey,),

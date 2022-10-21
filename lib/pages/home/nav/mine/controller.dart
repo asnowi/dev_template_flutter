@@ -4,6 +4,7 @@ import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
+import 'package:dev_template_flutter/common/widget/dialog/tip_dialog.dart';
 
 class MineController extends BaseGetController{
 
@@ -35,7 +36,12 @@ class MineController extends BaseGetController{
 
 
   void onLogout() {
-    user.value = null;
+    TipDialog.show(() {
+      user.value = null;
+      Global.user = null;
+      Global.dbUtil?.clearUser();
+      TipDialog.dismiss();
+    },title: '退出登录',content: '请确定要退出该账号?',confirm: '退出',cancel: '取消');
   }
 
   void onUserInfo() {

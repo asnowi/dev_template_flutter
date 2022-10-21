@@ -35,7 +35,7 @@ class LoginController extends BaseGetController{
     update(['password']);
   }
 
-  bool isAgree = true;
+  bool isAgree = false;
   void setAgree(bool isAgree) {
     this.isAgree = isAgree;
     update(['agree']);
