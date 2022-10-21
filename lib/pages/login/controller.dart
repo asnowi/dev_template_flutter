@@ -84,6 +84,7 @@ class LoginController extends BaseGetController{
             user.userId = entity.userId;
             user.token = entity.token;
             user.username = entity.username;
+            user.nickname = entity.nickname;
             user.phone = entity.phone;
             user.avatarImg = entity.avatarUrl;
 

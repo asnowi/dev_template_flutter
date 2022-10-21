@@ -3,6 +3,7 @@ import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/values/dimens.dart';
 import 'package:dev_template_flutter/common/values/values.dart';
+import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 
 import 'mine.dart';
 
@@ -16,7 +17,7 @@ class MineView extends BaseGetView<MineController> {
         children: [
           _buildHeader(),
           AppStyles.getCommonDivider(),
-          _buildContent(),
+          _buildContent(context),
         ],
       ),
     );
@@ -38,11 +39,11 @@ class MineView extends BaseGetView<MineController> {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return ValueListenableBuilder<User?>(
       valueListenable: controller.user,
       builder: (context, value, child) {
-        return  controller.user.value == null? _buildLogin(): _buildColumn();
+        return  controller.user.value == null? _buildLogin(): _buildColumn(context);
       }  
     );
   }
@@ -80,16 +81,18 @@ class MineView extends BaseGetView<MineController> {
               border: Border.all(color: Colors.grey,width: .5),
             ),
             alignment: Alignment.center,
-            child: ImageLoader.load(url: 'https://www.baidu.com/img/pc_675fe66eab33abff35a2669768c43d95.png'),
+            child: ImageLoader.load(url: controller.user.value?.avatarImg??''),
           ),
+          const Padding(padding: EdgeInsets.only(left: 10.0)),
           Container(
-            padding: const EdgeInsets.only(left: 12.0),
-            child: Column(
+            alignment: Alignment.centerLeft,
+            child: Expanded(child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Maple',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),),
-                Text('我的资料',style: TextStyle(color: Colors.black45,fontSize: 12.sp),),
+                Text(controller.user.value?.nickname??'',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),maxLines: 1,softWrap:false,overflow: TextOverflow.ellipsis,),
+                Text(controller.user.value?.phone??'',style: TextStyle(color: Colors.black45,fontSize: 12.sp),maxLines: 1,softWrap:false,overflow: TextOverflow.ellipsis,),
               ],
-            ),
+            ),)
           )
         ],
       ),
@@ -106,7 +109,7 @@ class MineView extends BaseGetView<MineController> {
   }
 
 
-  Widget _buildColumn() {
+  Widget _buildColumn(BuildContext context) {
       return Container(
         padding: EdgeInsets.symmetric(vertical: 30.h),
         child: Column(
@@ -117,7 +120,7 @@ class MineView extends BaseGetView<MineController> {
             AppStyles.getCommonDivider(indent: 30.w),
             _buildItem('标签',Ionicons.color_palette_outline,(){}),
             AppStyles.getCommonDivider(indent: 30.w),
-            _buildItem('设置',Ionicons.color_palette_outline,(){}),
+            _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(context)),
             Container(
               margin: EdgeInsets.only(top: 100.h),
               child: TextButton(onPressed: () => controller.onLogout(),

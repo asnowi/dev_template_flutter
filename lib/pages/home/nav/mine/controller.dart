@@ -4,7 +4,7 @@ import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
-import 'package:dev_template_flutter/common/widget/dialog/tip_dialog.dart';
+import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 
 class MineController extends BaseGetController{
 

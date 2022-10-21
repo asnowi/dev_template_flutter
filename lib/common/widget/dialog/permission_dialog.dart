@@ -1,24 +1,24 @@
+import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionDialog {
 
-  static show(BuildContext context) {
+  static show(BuildContext context,{String? title,String? cancel,String? setting}) {
     showCupertinoDialog(
         context: context,
         builder: (context) {
           return CupertinoAlertDialog(
-            title: const Text('权限申请',style: TextStyle(fontSize: 14,color: Colors.black87),),
-            content: const Padding(
-              child: Text('您需要授权使用相机权限？',style: TextStyle(color: Colors.black87,fontSize: 12),),
-              padding: EdgeInsets.only(top: 10),
+            title: Text('权限申请',style: TextStyle(fontSize: 14.sp,color: Colors.black87),),
+            content: Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Text(title?? '您需要授权使用权限？',style: TextStyle(color: Colors.black87,fontSize: 14.sp),),
             ),
             actions: <Widget>[
-              CupertinoDialogAction(child: const Text('不同意',style: TextStyle(color: Colors.grey,fontSize: 14),),onPressed: (){
+              CupertinoDialogAction(child: Text(cancel?? '不同意',style: TextStyle(color: Colors.grey,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
                 Navigator.of(context).pop('cancel');
               },),
-              CupertinoDialogAction(child: const Text('去设置',style: TextStyle(color: Colors.blue,fontSize: 14),),onPressed: (){
+              CupertinoDialogAction(child: Text(setting?? '去设置',style: TextStyle(color: Colors.blue,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
                 Navigator.of(context).pop('ok');
                 openSetting();
               },),
