@@ -1,5 +1,4 @@
 import 'package:dev_template_flutter/common/base/base.dart';
-import 'package:dev_template_flutter/common/values/values.dart';
 import 'package:flutter/material.dart';
 
 import 'userInfo.dart';
