@@ -33,7 +33,7 @@ class AssetsProvider{
      await DelayedUtils.delayed(() {
        LogUtils.GGQ('loading...');
      });
-    return Future(() => DioResponse.getResponse(data));
+    return DioResponse.getResponse(data);
   }
 
 }

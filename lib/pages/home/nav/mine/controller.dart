@@ -13,9 +13,13 @@ class MineController extends BaseGetController{
 
   final ValueNotifier<User?> user = ValueNotifier(Global.user);
 
+
+  void onChangeUser() {
+    user.value = Global.user;
+  }
   @override
   void onReady() {
-    user.value = Global.user;
+    onChangeUser();
     super.onReady();
   }
 
@@ -23,9 +27,12 @@ class MineController extends BaseGetController{
   void onLogin() {
     // user.value = User(userId: '1',phone: '13777777777',username: 'ggq',token: '1234567890',avatarImg: '');
     Get.toNamed(AppRoutes.LOGIN)?.then((value) => {
-      LogUtils.GGQ('====onLogin====>>${value.toString()}')
+      LogUtils.GGQ('====onLogin====>>${value.toString()}'),
+      onChangeUser()
     });
   }
+
+
 
   void onLogout() {
     user.value = null;

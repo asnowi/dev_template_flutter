@@ -1,3 +1,4 @@
+import 'package:dev_template_flutter/common/entity/entity.dart';
 import 'package:dev_template_flutter/common/http/http.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 

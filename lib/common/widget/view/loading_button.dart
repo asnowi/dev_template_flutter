@@ -23,6 +23,7 @@ class LoadingButton extends StatefulWidget {
   Color? loadingColor;
   ButtonStyle? buttonStyle;
   bool isLoading = false;
+  bool isEnable = true;
 
   _LoadingButtonState? _state;
 
@@ -73,11 +74,11 @@ class _LoadingButtonState extends State<LoadingButton> {
                   borderRadius: BorderRadius.all(Radius.circular(4)),
                 )),
               ),
-          onPressed: () {
+          onPressed: widget.isEnable ? () {
             if (!widget.isLoading) {
               widget.onPressed(context);
             }
-          },
+          }: null,
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 100),
             child: Row(
@@ -115,12 +116,14 @@ class _LoadingButtonState extends State<LoadingButton> {
   void loading() {
     setState(() {
       widget.isLoading = true;
+      widget.isEnable = false;
     });
   }
 
   void reset() {
     setState(() {
       widget.isLoading = false;
+      widget.isEnable = true;
     });
   }
 }

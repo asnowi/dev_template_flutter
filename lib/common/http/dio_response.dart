@@ -1,4 +1,8 @@
 
+import 'dart:convert' as convert;
+
+import 'package:dev_template_flutter/common/utils/logger.dart';
+
 class DioResponse<Object> {
 
 
@@ -17,11 +21,9 @@ class DioResponse<Object> {
   });
 
   static DioResponse getResponse(String data) {
-    return DioResponse<String>(
-      code: 200,
-      message: '操作成功',
-      data: data
-    );
+    LogUtils.GGQ('--DioResponse-->>>>${data}');
+    final Map<String, dynamic> map = convert.jsonDecode(data);
+    return DioResponse(code: map['code'],message: map['message'],data: map['data']);
   }
 
   @override

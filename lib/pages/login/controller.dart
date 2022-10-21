@@ -1,6 +1,10 @@
 
 import 'package:dev_template_flutter/common/api/api.dart';
+import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
+import 'package:dev_template_flutter/common/config/config.dart';
+import 'package:dev_template_flutter/common/db/db.dart';
+import 'package:dev_template_flutter/common/entity/entity.dart';
 import 'package:dev_template_flutter/common/utils/toast.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/view/view.dart';
@@ -41,8 +45,8 @@ class LoginController extends BaseGetController{
     ToastUtils.show('帮助');
   }
 
-  void onFinish() {
-    Get.back(result: {'result': false});
+  void onFinish({ bool? isSuccess }) {
+    Get.back(result: {'result': isSuccess?? false});
   }
 
 
@@ -74,7 +78,27 @@ class LoginController extends BaseGetController{
       ApiService.login(account, password).then((value) async{
         LogUtils.GGQ('------登录结果:------>>>${value}');
         if(ResponseUtils.isSuccess(value.code)) {
+          LogUtils.GGQ('------登录code:------>>>${value.code}');
+          final entity = LoginEntity.fromJson(value.data);
+          final User user = User();
+            user.userId = entity.userId;
+            user.token = entity.token;
+            user.username = entity.username;
+            user.phone = entity.phone;
+            user.avatarImg = entity.avatarUrl;
 
+          StorageUtil().setJSON(SaveInfoKey.TOKEN, entity.token);
+
+
+          final int? result = await Global.dbUtil?.saveUser(user);
+          if(result != null && result >= 0) {
+            Global.user = user;
+            onFinish(isSuccess: true);
+          } else {
+            ToastUtils.showBar('保存用户信息失败！');
+          }
+        } else {
+          ToastUtils.showBar(ResponseUtils.getMessage(value.message));
         }
       }).whenComplete(() => {
         loadingButton.onCancel()
