@@ -21,7 +21,7 @@ class AppPages {
   static const INITIAL = AppRoutes.INDEX;
 
   //页面跳转动画时长
-  static const Duration _transitionDuration = Duration(milliseconds: 300);
+  static const Duration _transitionDuration = Duration(milliseconds: 150);
 
   static final List<GetPage> routes = [
 
@@ -75,7 +75,8 @@ class AppPages {
       name: AppRoutes.USER_INFO,
       page: () => UserInfoView(),
       binding: UserInfoBinding(),
-      transition: Transition.fadeIn,
+      transition: Transition.rightToLeft,
+      transitionDuration: _transitionDuration
     ),
 
     /// 错误页
