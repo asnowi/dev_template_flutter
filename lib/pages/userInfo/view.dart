@@ -1,4 +1,5 @@
 import 'package:dev_template_flutter/common/base/base.dart';
+import 'package:dev_template_flutter/common/values/values.dart';
 import 'package:flutter/material.dart';
 
 import 'userInfo.dart';
@@ -8,7 +9,10 @@ class UserInfoView extends BaseGetView<UserInfoController>{
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('个人信息',style: AppStyles.titleStyle,),
+      ),
       body: Center(child: Text('用户页')),
     );
   }
