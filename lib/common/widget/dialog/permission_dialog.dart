@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class PermissionDialog {
 
-  static show(BuildContext context,{String? title,String? ok,String? cancel,VoidCallback? onOk,VoidCallback? onCancel}) {
+  static show(BuildContext context,{String? title,String? confirm,String? cancel,VoidCallback? onConfirm,VoidCallback? onCancel}) {
     showCupertinoDialog(
         context: context,
         builder: (context) {
@@ -20,10 +20,10 @@ class PermissionDialog {
                   onCancel();
                 }
               },),
-              CupertinoDialogAction(child: Text(ok?? '同意',style: TextStyle(color: Colors.blue,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
-                Navigator.of(context).pop('ok');
-                if(onOk != null) {
-                  onOk();
+              CupertinoDialogAction(child: Text(confirm?? '同意',style: TextStyle(color: Colors.blue,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
+                Navigator.of(context).pop('confirm');
+                if(onConfirm != null) {
+                  onConfirm();
                 }
               },),
             ],
