@@ -242,43 +242,42 @@ class LoginView extends BaseGetView<LoginController> {
                 ),
               ),
             ),
-
             RichText(
-              text: TextSpan(
-                  text: '我已认真阅读并同意',
-                  style: TextStyle(color: Colors.white, fontSize: 10.sp),
-                  children: [
-                    TextSpan(
-                        text: '《用户使用协议》',
-                        style: TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 12.sp,
-                            fontStyle: FontStyle.italic,
-                            decoration: TextDecoration.underline),
-                        recognizer: TapGestureRecognizer() ..onTap = () {
-                          ToastUtils.show('用户使用协议');
-                        }
-                    ),
-                     TextSpan(
-                        text: '及',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10.sp,
-                            fontStyle: FontStyle.italic)),
-                    TextSpan(
-                        text: '《隐私条款》',
-                        style: TextStyle(
-                            color: Colors.blueAccent,
-                            fontSize: 12.sp,
-                            fontStyle: FontStyle.italic,
-                            decoration: TextDecoration.underline),
-                        recognizer: TapGestureRecognizer() ..onTap = () {
-                          ToastUtils.show('隐私条款');
-                        }
-                    ),
-                  ]
-              ),
-            )
+          text: TextSpan(
+              text: '我已认真阅读并同意',
+              style: TextStyle(color: Colors.white, fontSize: 10.sp),
+              children: [
+                TextSpan(
+                    text: '《用户使用协议》',
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 12.sp,
+                        fontStyle: FontStyle.italic,
+                        decoration: TextDecoration.underline),
+                    recognizer: TapGestureRecognizer() ..onTap = () {
+                      ToastUtils.show('用户使用协议');
+                    }
+                ),
+                TextSpan(
+                    text: '及',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10.sp,
+                        fontStyle: FontStyle.italic)),
+                TextSpan(
+                    text: '《隐私条款》',
+                    style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 12.sp,
+                        fontStyle: FontStyle.italic,
+                        decoration: TextDecoration.underline),
+                    recognizer: TapGestureRecognizer() ..onTap = () {
+                      ToastUtils.show('隐私条款');
+                    }
+                ),
+              ]
+          ),
+        )
           ],
         ),
       ),

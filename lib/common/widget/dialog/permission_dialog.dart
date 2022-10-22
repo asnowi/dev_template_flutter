@@ -1,10 +1,9 @@
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class PermissionDialog {
 
-  static show(BuildContext context,{String? title,String? cancel,String? setting}) {
+  static show(BuildContext context,{String? title,String? ok,String? cancel,VoidCallback? onOk,VoidCallback? onCancel}) {
     showCupertinoDialog(
         context: context,
         builder: (context) {
@@ -12,15 +11,20 @@ class PermissionDialog {
             title: Text('权限申请',style: TextStyle(fontSize: 14.sp,color: Colors.black87),),
             content: Padding(
               padding: const EdgeInsets.only(top: 10.0),
-              child: Text(title?? '您需要授权使用权限？',style: TextStyle(color: Colors.black87,fontSize: 14.sp),),
+              child: Text(title?? '您需要授权使用权限！',style: TextStyle(color: Colors.black87,fontSize: 14.sp),),
             ),
             actions: <Widget>[
-              CupertinoDialogAction(child: Text(cancel?? '不同意',style: TextStyle(color: Colors.grey,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
+              CupertinoDialogAction(child: Text(cancel?? '取消',style: TextStyle(color: Colors.grey,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
                 Navigator.of(context).pop('cancel');
+                if(onCancel != null) {
+                  onCancel();
+                }
               },),
-              CupertinoDialogAction(child: Text(setting?? '去设置',style: TextStyle(color: Colors.blue,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
+              CupertinoDialogAction(child: Text(ok?? '同意',style: TextStyle(color: Colors.blue,fontSize: 14.sp,fontWeight: FontWeight.bold),),onPressed: (){
                 Navigator.of(context).pop('ok');
-                openSetting();
+                if(onOk != null) {
+                  onOk();
+                }
               },),
             ],
           );
@@ -28,8 +32,4 @@ class PermissionDialog {
     );
   }
 
-
-  static Future<bool> openSetting() async{
-    return await openAppSettings();
-  }
 }

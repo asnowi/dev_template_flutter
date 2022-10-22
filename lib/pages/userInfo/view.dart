@@ -10,9 +10,9 @@ class UserInfoView extends BaseGetView<UserInfoController>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('个人信息'),
+        title: const Text('个人信息'),
       ),
-      body: Center(child: Text('用户页')),
+      body: Center(child: TextButton(onPressed: () => controller.onImagePicker(context), child: Text('相册'))),
     );
   }
 

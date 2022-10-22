@@ -44,6 +44,7 @@ dependencies:
   flutter_screenutil: ^5.5.4
   # 权限管理
   permission_handler: ^9.2.0
+  # permission_handler: ^10.2.0
   # http
   dio: ^4.0.6
   dio_cache_interceptor: ^3.2.7
@@ -89,7 +90,10 @@ dependencies:
   # 动画
   flutter_spinkit: ^5.1.0
   # 图片选择器
-  image_picker: ^0.8.6
+#  wechat_assets_picker: ^8.1.3
+  # 拍照及录制视频
+#  wechat_camera_picker: ^3.6.3
+
 
 
 dev_dependencies:

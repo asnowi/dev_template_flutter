@@ -1,25 +1,105 @@
+import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionUtil {
 
   ///检查是否有权限
-  ///[permission] 权限
+  ///[permissions] 权限
   ///return 是否有权限
-  Future<bool> checkPermissions(Permission permission) async {
-    var status = await permission.status;
-    if (status.isDenied) {
-      return false;
-    } else if (status.isGranted) {
-      return true;
-    } else if (status.isPermanentlyDenied) {
-      // 永久拒绝，仅支持Android
-      return false;
-    } else if (status.isRestricted) {
-      //仅支持iOS
-      return false;
-    } else {
-      return false;
+  static checkPermissions(List<Permission> permissions,{VoidCallback? onSuccess, VoidCallback? onFailed, VoidCallback? onSetting}) async {
+    List<Permission> newList = [];
+    ///遍历当前权限申请列表
+    for (Permission permission in permissions) {
+      PermissionStatus status = await permission.status;
+      ///如果不是允许状态就添加到新的申请列表中
+      if (!status.isGranted) {
+        newList.add(permission);
+      }
     }
+    ///如果需要重新申请的列表不是空的
+    if (newList.isNotEmpty) {
+      PermissionStatus permissionStatus = await _requestPermission(newList);
+      switch (permissionStatus) {
+        ///拒绝状态
+        case PermissionStatus.denied:
+          if(onFailed != null) {
+            onFailed();
+          }
+          break;
+        ///允许状态
+        case PermissionStatus.granted:
+          if(onSuccess != null) {
+            onSuccess();
+          }
+          break;
+        /// 永久拒绝  活动限制
+        case PermissionStatus.restricted:
+        case PermissionStatus.limited:
+        case PermissionStatus.permanentlyDenied:
+          if(onSetting != null) {
+            onSetting();
+          }
+          break;
+      }
+    } else {
+      if(onSuccess != null) {
+        onSuccess();
+      }
+    }
+  }
+
+  static Future<PermissionStatus> _requestPermission(List<Permission> permissions) async{
+    Map<Permission, PermissionStatus> statuses = await permissions.request();
+    PermissionStatus currentPermissionStatus = PermissionStatus.granted;
+    statuses.forEach((key, value) {
+      if (!value.isGranted) {
+        currentPermissionStatus = value;
+        return;
+      }
+    });
+    return currentPermissionStatus;
+  }
+
+
+  // 一个需要特殊处理的权限 ios获取checkLocationAlways 这个权限时候需要先获取 locationWhenInUse 在获取locationAlways 所以封装了以下
+  static checkLocationAlways({VoidCallback? onSuccess, VoidCallback? onFailed, VoidCallback? onSetting}) async{
+    ///获取前置状态
+    /// Android没有这一步 ios会先访问这个再访问其他的
+    PermissionStatus status = PermissionStatus.granted;
+    status = await _checkSinglePermission(Permission.locationWhenInUse);
+    ///获取第二个状态
+    PermissionStatus status2 = PermissionStatus.denied;
+    ///如果前置状态为成功才能执行获取第二个状态
+    if (status.isGranted) {
+      status2 = await _checkSinglePermission(Permission.locationAlways);
+    }
+    ///如果两个都成功那么就返回成功
+    if (status.isGranted && status2.isGranted) {
+      if(onSuccess != null) {
+        onSuccess();
+      }
+      ///如果有一个拒绝那么就失败了
+    } else if (status.isDenied || status2.isDenied) {
+      if(onFailed != null) {
+        onFailed();
+      }
+    } else {
+      if(onSetting != null) {
+        onSetting();
+      }
+    }
+  }
+
+  static Future<PermissionStatus> _checkSinglePermission(Permission permission) async {
+    ///获取当前状态
+    PermissionStatus status = await permission.status;
+    PermissionStatus currentPermissionStatus = PermissionStatus.granted;
+    ///如果它状态不是允许那么就去获取
+    if (!status.isGranted) {
+      currentPermissionStatus = await _requestPermission([permission]);
+    }
+    ///返回最终状态
+    return currentPermissionStatus;
   }
 
   // /// 启动时请求权限
