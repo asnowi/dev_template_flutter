@@ -11,6 +11,7 @@ class AppThemes {
       appBarTheme: AppBarTheme(
         centerTitle: true,
         elevation: 0.5,
+        iconTheme: const IconThemeData(color: Colors.black87,size: 22.0,),
         backgroundColor: Colors.white,
         titleTextStyle: AppStyles.titleStyleLight,
       ),
@@ -28,6 +29,7 @@ class AppThemes {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       elevation: 0.5,
+      iconTheme: const IconThemeData(color: Colors.white,size: 22.0,),
       backgroundColor: Colors.black,
       titleTextStyle: AppStyles.titleStyleDark,
     ),

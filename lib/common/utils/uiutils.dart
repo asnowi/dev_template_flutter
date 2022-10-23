@@ -1,4 +1,6 @@
 
+import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/values/values.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -17,5 +19,22 @@ class UIUtils {
 
   static Future<bool> openSettings() async {
     return openAppSettings();
+  }
+
+
+  static IconButton onAppBarBack({VoidCallback? onBack}) {
+    return IconButton(
+      onPressed: (){
+        if(onBack != null) {
+          onBack();
+        }
+      },
+      splashRadius: AppDimens.backRadius,
+      icon: const Icon(
+        Icons.arrow_back_ios_new,
+        color: Colors.black87,
+        size: 18,
+      ),
+    );
   }
 }

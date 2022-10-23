@@ -1,5 +1,7 @@
 
+import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
+import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -11,20 +13,24 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
 
   BuildContext? context;
 
+  User? user;
+
   @override
   void onInit() {
     // 注册观察者
     WidgetsBinding.instance.addObserver(this);
     isOpenSetting = false;
+    user = Global.user;
     super.onInit();
   }
 
   @override
-  void disposeId(Object id) {
-    super.disposeId(id);
+  void dispose() {
+    super.dispose();
     // 移除观察者
     WidgetsBinding.instance.removeObserver(this);
   }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -35,13 +41,16 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
     }
   }
 
+  void onBack() {
+    Get.back();
+  }
 
   void onImagePicker(BuildContext context) {
     this.context = context;
     isOpenSetting = false;
     PermissionUtil.checkPermissions([Permission.photos,Permission.camera,Permission.storage],onSuccess: () async{
       AssetPickerConfig pickerConfig = AssetPickerConfig(
-        maxAssets: 9,
+        maxAssets: 1,
         requestType: RequestType.image,
         textDelegate: const AssetPickerTextDelegate(),
         pickerTheme: AssetPicker.themeData(Colors.lightBlueAccent,
