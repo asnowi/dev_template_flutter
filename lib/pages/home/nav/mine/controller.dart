@@ -12,12 +12,17 @@ class MineController extends BaseGetController{
     context.read<BadgeMineModel>().onChange(num);
   }
 
-  final ValueNotifier<User?> user = ValueNotifier(Global.user);
 
+  // final ValueNotifier<User?> user = ValueNotifier(Global.user);
+
+  User? user;
 
   void onChangeUser() {
-    user.value = Global.user;
+    // user.value = Global.user;
+    user = Global.user;
+    update(['user']);
   }
+
   @override
   void onReady() {
     onChangeUser();
@@ -37,10 +42,10 @@ class MineController extends BaseGetController{
 
   void onLogout() {
     TipDialog.show(() {
-      user.value = null;
       Global.user = null;
       Global.dbUtil?.clearUser();
       TipDialog.dismiss();
+      onChangeUser();
     },title: '退出登录',content: '请确定要退出该账号?',confirm: '退出',cancel: '取消');
   }
 

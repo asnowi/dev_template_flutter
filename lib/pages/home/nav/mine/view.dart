@@ -1,7 +1,5 @@
 import 'package:dev_template_flutter/common/base/base.dart';
-import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
-import 'package:dev_template_flutter/common/values/dimens.dart';
 import 'package:dev_template_flutter/common/values/values.dart';
 import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 
@@ -13,42 +11,41 @@ class MineView extends BaseGetView<MineController> {
     return SingleChildScrollView(
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-      child: Column(
-        children: [
-          _buildHeader(),
-          AppStyles.getCommonDivider(),
-          _buildContent(context),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Container(
-      padding: EdgeInsets.only(
-          top: 60.h,
-          bottom: 30.h,
-          left: AppDimens.slideGap,
-          right: AppDimens.slideGap),
-      child: ValueListenableBuilder<User?>(
-          valueListenable: controller.user,
-          builder: (context, value, child) {
-            return  controller.user.value == null? _buildUnLoginHeader(): _buildLoginHeader();
-          }
+      child: GetBuilder<MineController>(
+        id: 'user',
+        builder: (_) => _buildContent(context)
       )
     );
   }
 
   Widget _buildContent(BuildContext context) {
-    return ValueListenableBuilder<User?>(
-      valueListenable: controller.user,
-      builder: (context, value, child) {
-        return  controller.user.value == null? _buildLogin(): _buildColumn(context);
-      }  
+    return Column(
+      children: [
+        Container(
+          height: 0.2.sh,
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(top: 30.h,
+              left: AppDimens.slideGap,
+              right: AppDimens.slideGap),
+          child: controller.user == null ? _buildLoginHeader():_buildUserHeader(),
+        ),
+        AppStyles.getCommonDivider(),
+        Container(
+          width: getWidth(),
+          height: 0.75.sh,
+          child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) =>
+              Container(
+                constraints: constraints,
+                child: controller.user == null? _buildLogin(context): _buildColumn(context)
+              )
+            ,),
+        )
+      ],
     );
   }
 
-  Widget _buildUnLoginHeader() {
+
+  Widget _buildLoginHeader() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,7 +64,7 @@ class MineView extends BaseGetView<MineController> {
     );
   }
 
-  Widget _buildLoginHeader() {
+  Widget _buildUserHeader() {
     return GestureDetector(
       onTap: () => controller.onUserInfo(),
       child: Row(
@@ -80,56 +77,49 @@ class MineView extends BaseGetView<MineController> {
               borderRadius: BorderRadius.circular(32),
               border: Border.all(color: Colors.grey,width: .5),
             ),
-            alignment: Alignment.center,
-            child: ImageLoader.load(url: controller.user.value?.avatarImg??''),
+            child: ImageLoader.load(url: controller.user?.avatarImg??''),
           ),
           const Padding(padding: EdgeInsets.only(left: 10.0)),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Expanded(child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(controller.user.value?.nickname??'',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),maxLines: 1,softWrap:false,overflow: TextOverflow.ellipsis,),
-                Text(controller.user.value?.phone??'',style: TextStyle(color: Colors.black45,fontSize: 12.sp),maxLines: 1,softWrap:false,overflow: TextOverflow.ellipsis,),
-              ],
-            ),)
-          )
+          Expanded(child: ListTile(
+            title: Text(controller.user?.nickname??'',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),maxLines: 1,softWrap:false,overflow: TextOverflow.ellipsis,),
+            subtitle: Text(controller.user?.phone??'',style: TextStyle(color: Colors.black45,fontSize: 12.sp),maxLines: 1,softWrap:false,overflow: TextOverflow.ellipsis,),
+          ))
         ],
       ),
     );
   }
 
-  Widget _buildLogin() {
-    return Container(
-      margin: EdgeInsets.only(top: getHeight() * 0.3),
-      child: TextButton(onPressed: () => controller.onLogin(),
-          style: AppStyles.getCommonButtonStyle(width: getWidth() * 0.75, height: 52.h),
-          child: const Text('请登录')),
+  Widget _buildLogin(BuildContext context) {
+    return Column(
+      children: [
+        Flexible(child: Container()),
+        Flexible(child: TextButton(onPressed: () => controller.onLogin(),
+            style: AppStyles.getCommonButtonStyle(width: getWidth() * 0.75, height: 52.h),
+            child: const Text('请登录')))
+      ],
     );
   }
-
-
   Widget _buildColumn(BuildContext context) {
-      return Container(
-        padding: EdgeInsets.symmetric(vertical: 30.h),
-        child: Column(
-          children: [
-            _buildItem('收藏',Ionicons.color_palette_outline,() => ToastUtils.show('收藏')),
-            AppStyles.getCommonDivider(indent: 30.w),
-            _buildItem('卡包',Ionicons.color_palette_outline,(){}),
-            AppStyles.getCommonDivider(indent: 30.w),
-            _buildItem('标签',Ionicons.color_palette_outline,(){}),
-            AppStyles.getCommonDivider(indent: 30.w),
-            _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(context)),
-            Container(
-              margin: EdgeInsets.only(top: 100.h),
-              child: TextButton(onPressed: () => controller.onLogout(),
-                  style: AppStyles.getCommonButtonStyle(width: getWidth() * 0.75, height: 48.h),
-                  child: const Text('退出登录')),
-            )
-          ],
-        ),
-      );
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 30.h),
+      child: Column(
+        children: [
+          _buildItem('收藏',Ionicons.color_palette_outline,() => ToastUtils.show('收藏')),
+          AppStyles.getCommonDivider(indent: 30.w),
+          _buildItem('卡包',Ionicons.color_palette_outline,(){}),
+          AppStyles.getCommonDivider(indent: 30.w),
+          _buildItem('标签',Ionicons.color_palette_outline,(){}),
+          AppStyles.getCommonDivider(indent: 30.w),
+          _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(context)),
+          Container(
+            margin: EdgeInsets.only(top: 100.h),
+            child: TextButton(onPressed: () => controller.onLogout(),
+                style: AppStyles.getCommonButtonStyle(width: getWidth() * 0.75, height: 48.h),
+                child: const Text('退出登录')),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _buildItem(String title,IconData icon,Function click, {bool isNext = true}) {
