@@ -108,7 +108,7 @@ class MineView extends BaseGetView<MineController> {
           AppStyles.getCommonDivider(indent: 30.w),
           _buildItem('卡包',Ionicons.color_palette_outline,(){}),
           AppStyles.getCommonDivider(indent: 30.w),
-          _buildItem('标签',Ionicons.color_palette_outline,(){}),
+          _buildItem('Web',Ionicons.color_palette_outline,() => controller.openWebView(context)),
           AppStyles.getCommonDivider(indent: 30.w),
           _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(context)),
           Container(

@@ -52,4 +52,8 @@ class MineController extends BaseGetController{
   void onUserInfo() {
     Get.toNamed(AppRoutes.USER_INFO);
   }
+
+  void openWebView(BuildContext context) {
+    Get.toNamed(AppRoutes.WEB);
+  }
 }

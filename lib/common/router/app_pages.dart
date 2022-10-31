@@ -7,6 +7,7 @@ import 'package:dev_template_flutter/pages/login/login.dart';
 import 'package:dev_template_flutter/pages/splash/splash.dart';
 import 'package:dev_template_flutter/pages/unknown/unknown.dart';
 import 'package:dev_template_flutter/pages/userInfo/userInfo.dart';
+import 'package:dev_template_flutter/pages/web/web.dart';
 import 'package:dev_template_flutter/pages/welcome/welcome.dart';
 import 'package:get/get.dart';
 
@@ -77,6 +78,15 @@ class AppPages {
       binding: UserInfoBinding(),
       transition: Transition.rightToLeft,
       transitionDuration: _transitionDuration
+    ),
+
+    /// Web
+    GetPage(
+        name: AppRoutes.WEB,
+        page: () => WebView(),
+        binding: WebBinding(),
+        transition: Transition.rightToLeft,
+        transitionDuration: _transitionDuration
     ),
 
     /// 错误页

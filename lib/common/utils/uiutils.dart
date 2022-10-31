@@ -31,7 +31,7 @@ class UIUtils {
       },
       splashRadius: AppDimens.backRadius,
       icon: const Icon(
-        Icons.arrow_back_ios_new,
+        Icons.arrow_back_ios,
         color: Colors.black87,
         size: 18,
       ),
