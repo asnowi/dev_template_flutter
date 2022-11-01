@@ -45,7 +45,9 @@ class SubmitDialog extends BaseDialog{
                   ),
                 ),
                 const Divider(height: .2,color: Colors.grey,thickness: .2),
-                Container(
+                GetBuilder<DialogController>(
+                    id: 'submit',
+                    builder: (controller) => Container(
                     height: 52.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -59,28 +61,32 @@ class SubmitDialog extends BaseDialog{
                                     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(18)),
                                   )),
                                 ),
-                                onPressed: () => {
+                                onPressed: controller.getLoading()? null: () => {
                                   onConfirm(),
-                                  dismiss()
+                                  controller.onLoading(true)
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text(confirm?? '提交',style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
-                                    const Visibility(
-                                        visible: true,
+                                    Text(confirm?? '提交',style: TextStyle(fontSize: 16, color: controller.getLoading()? Colors.blue[200]:Colors.blue,fontWeight: FontWeight.bold)),
+                                    Visibility(
+                                        visible: controller.getLoading(),
                                         maintainState: false,
-                                        child: Padding(padding: EdgeInsets.only(left: 4.0),child: SizedBox(
-                                          width: 15,
-                                          height: 15,
+                                        child: const Padding(padding: EdgeInsets.only(right: 4))),
+                                    Visibility(
+                                        visible: controller.getLoading(),
+                                        maintainState: false,
+                                        child: const SizedBox(
+                                          width: 16,
+                                          height: 16,
                                           child: SpinKitRing(
-                                            color: Colors.blueAccent,
+                                            color: Color(0xFF90CAF9),
                                             size: 13.0,
                                             lineWidth: 1.0,
                                           ),
-                                        ),)
-                                    ),
+                                        )
+                                    )
                                   ],
                                 )
                             )
@@ -95,12 +101,20 @@ class SubmitDialog extends BaseDialog{
                                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
                               )),
                             ),
-                            onPressed: onCancel?? dismiss,
-                            child: Text(cancel?? '取消', style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
+                            onPressed: () => {
+                              controller.onLoading(false),
+                              if(onCancel != null) {
+                                onCancel(),
+                                dismiss()
+                              } else {
+                                dismiss()
+                              },
+                            },
+                            child: Text(cancel?? '取消', style: TextStyle(fontSize: 16, color: controller.getLoading()? Colors.blue:Colors.blue,fontWeight: FontWeight.bold)),
                           ),)
                       ],
                     )
-                )
+                ))
               ],
             )
         )

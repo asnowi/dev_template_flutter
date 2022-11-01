@@ -8,6 +8,8 @@ import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 
 class MineController extends BaseGetController{
 
+  final _dialogController = Get.find<DialogController>();
+
   void onBadgeChange(BuildContext context,String num) {
     context.read<BadgeMineModel>().onChange(num);
   }
@@ -48,7 +50,10 @@ class MineController extends BaseGetController{
 
   void showSubmitDialog() {
     SubmitDialog.show(() {
-
+      DelayedUtils.delayed(() {
+        _dialogController.onLoading(false);
+        SubmitDialog.dismiss();
+      });
     });
   }
 

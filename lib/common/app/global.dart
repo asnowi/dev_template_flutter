@@ -4,6 +4,7 @@ import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/http/http.dart';
 import 'package:dev_template_flutter/common/service/service.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -36,6 +37,9 @@ class Global{
      // 业务服务
      Get.put<ConfigService>(ConfigService());
      Get.put<UserService>(UserService());
+
+     Get.put<DialogController>(DialogController());
+
   }
 
 
