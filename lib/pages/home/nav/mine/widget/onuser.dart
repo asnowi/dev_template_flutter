@@ -59,13 +59,15 @@ class OnUserWidget extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 30.h),
                       child: Column(
                         children: [
-                          _buildItem('收藏',Ionicons.color_palette_outline,() => ToastUtils.show('收藏')),
+                          _buildItem('收藏',Ionicons.color_palette_outline,() => controller.showSubmitDialog()),
                           MDivider(indent: 30.w),
                           _buildItem('卡包',Ionicons.color_palette_outline,(){}),
                           MDivider(indent: 30.w),
                           _buildItem('Web',Ionicons.color_palette_outline,() => controller.openWebView(context)),
                           MDivider(indent: 30.w),
-                          _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(context)),
+                          _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(() => {
+                            ToastUtils.show('权限')
+                          })),
                           Container(
                             margin: EdgeInsets.only(top: 100.h),
                             child: TextButton(onPressed: () => controller.onLogout(),

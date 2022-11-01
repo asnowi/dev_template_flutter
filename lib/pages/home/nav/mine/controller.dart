@@ -33,9 +33,9 @@ class MineController extends BaseGetController{
   void onLogout() {
     TipDialog.show(() async{
       await UserService.to.clearUser();
-      TipDialog.dismiss();
       onChangeUser();
     },title: '退出登录',content: '请确定要退出该账号?',confirm: '退出',cancel: '取消');
+
   }
 
   void onUserInfo() {
@@ -45,4 +45,11 @@ class MineController extends BaseGetController{
   void openWebView(BuildContext context) {
     Get.toNamed(AppRoutes.WEB);
   }
+
+  void showSubmitDialog() {
+    SubmitDialog.show(() {
+
+    });
+  }
+
 }

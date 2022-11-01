@@ -1,10 +1,10 @@
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 import 'dialog.dart';
 
 class TipDialog extends BaseDialog{
-
 
   static void show(VoidCallback onConfirm,{String? title,String? content,String? confirm, String? cancel,VoidCallback? onCancel}) {
     if (Get.isDialogOpen == true) {
@@ -17,7 +17,7 @@ class TipDialog extends BaseDialog{
     );
   }
 
-  static Dialog _buildDialog(VoidCallback onConfirm,{String? title,String? content,String? confirm, String? cancel,VoidCallback? onCancel}){
+   static Dialog _buildDialog(VoidCallback onConfirm,{String? title,String? content,String? confirm, String? cancel,VoidCallback? onCancel}){
     return Dialog(
         elevation: 2.0,
         backgroundColor: Colors.white,
@@ -29,61 +29,57 @@ class TipDialog extends BaseDialog{
             height: 0.21.sh,
             child: Column(
               children: [
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                      alignment: Alignment.bottomCenter,
-                      decoration: const BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(18.0))),
-                      child: Text(title?? '温馨提示',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),)
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: Container(
+                Container(
+                    height: 52.h,
                     alignment: Alignment.center,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Text(content?? '请确认',style: TextStyle(color: Colors.black87,fontSize: 14.sp),),
-                    ),
-                  ),
+                    decoration: const BoxDecoration(borderRadius: BorderRadius.vertical(top: Radius.circular(18.0))),
+                    child: Text(title?? '温馨提示',style: TextStyle(color: Colors.black87,fontSize: 16.sp,fontWeight: FontWeight.bold),)
                 ),
+                Expanded(child: Container(
+                  alignment: Alignment.topCenter,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Text(content?? '请确认',style: TextStyle(color: Colors.black87,fontSize: 14.sp),),
+                  ),
+                ),),
                 const Divider(height: .2,color: Colors.grey,thickness: .2),
-                Expanded(
-                  flex: 4,
-                  child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: TextButton(
-                                  style: ButtonStyle(
-                                    minimumSize: MaterialStateProperty.all(const Size(double.maxFinite, double.maxFinite)),
-                                    shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(18)),
-                                    )),
-                                  ),
-                                  onPressed: onConfirm,
-                                  child: Text(confirm?? '确定',style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold))
-                              )
-                          ),
-                          const VerticalDivider(width: .2,color: Colors.grey,thickness: .2),
-                          Expanded(
+                Container(
+                    height: 52.h,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
                             flex: 1,
                             child: TextButton(
                               style: ButtonStyle(
                                 minimumSize: MaterialStateProperty.all(const Size(double.maxFinite, double.maxFinite)),
                                 shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(18)),
                                 )),
                               ),
-                              onPressed: onCancel?? dismiss,
-                              child: Text(cancel?? '取消', style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
-                            ),)
-                        ],
-                      )
-                  ),
-                ),
+                              onPressed: () => {
+                                onConfirm(),
+                                dismiss()
+                              },
+                              child: Text(confirm?? '确定',style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
+                            )
+                        ),
+                        const VerticalDivider(width: .2,color: Colors.grey,thickness: .2),
+                        Expanded(
+                          flex: 1,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              minimumSize: MaterialStateProperty.all(const Size(double.maxFinite, double.maxFinite)),
+                              shape: MaterialStateProperty.all(const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(bottomRight: Radius.circular(18)),
+                              )),
+                            ),
+                            onPressed: onCancel?? dismiss,
+                            child: Text(cancel?? '取消', style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
+                          ),)
+                      ],
+                    )
+                )
               ],
             )
         )

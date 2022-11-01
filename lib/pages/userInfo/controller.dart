@@ -58,7 +58,7 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
         ToastUtils.show('选择的图片-->${result.length}');
       }
     },onFailed: () {
-      PermissionDialog.show(context,onConfirm: () => onImagePicker(context),onCancel: () => ToastUtils.show('取消'));
+      PermissionDialog.show(() => onImagePicker(context),onCancel: () => ToastUtils.show('取消'));
     },onSetting: () {
       UIUtils.openSettings();
       isOpenSetting = true;
