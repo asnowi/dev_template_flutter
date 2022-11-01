@@ -61,12 +61,10 @@ class AppPages {
           GetPage(
               name: AppRoutes.HOME_MAIN,
               page: () => MainView(),
-              binding: MainBinding()
           ),
           GetPage(
               name: AppRoutes.HOME_MINE,
               page: () => MineView(),
-              binding: MineBinding()
           ),
         ]
     ),

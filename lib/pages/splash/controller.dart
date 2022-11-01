@@ -1,3 +1,4 @@
+import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/router/app_routes.dart';
 import 'package:dev_template_flutter/common/service/service.dart';

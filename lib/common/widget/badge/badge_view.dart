@@ -11,18 +11,6 @@ class BadgeView<T extends BadgerProviderModel> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return Badge(
-    //   animationType: BadgeAnimationType.scale,
-    //   // showBadge: value.badgeText != null,
-    //   padding: const EdgeInsets.all(4.0),
-    //   elevation: 2.0,
-    //   position: BadgePosition.topEnd(top: 0, end: -8),
-    //   badgeContent: Consumer<BadgeMineModel> (builder: (context,value,child){
-    //     return Text(value.badgeText??'', style: const TextStyle(fontSize: 8.0, color: Colors.white));
-    //   },),
-    //   child: child,
-    // );
-
     return Consumer<T>(builder: (context,value,_) {
       return Badge(
         animationType: BadgeAnimationType.scale,

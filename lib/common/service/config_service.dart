@@ -1,4 +1,3 @@
-import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/config/config.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/values/values.dart';
@@ -37,8 +36,6 @@ class ConfigService extends GetxService{
   void onInit() async{
     isHomeOpen = StorageUtil().getBool(SaveInfoKey.FIRST_OPEN)?? false;
     LogUtils.GGQ('isHomeOpen-->${isHomeOpen}');
-    Global.user = await Global.dbUtil?.getUser();
-    LogUtils.GGQ('user-->${Global.user?.toString()}');
     super.onInit();
   }
 

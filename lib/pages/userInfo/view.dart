@@ -1,9 +1,7 @@
+import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
-import 'package:dev_template_flutter/common/utils/screen.dart';
-import 'package:dev_template_flutter/common/utils/uiutils.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
-import 'package:dev_template_flutter/common/values/values.dart';
-import 'package:flutter/material.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 
 import 'userInfo.dart';
 
@@ -29,17 +27,17 @@ class UserInfoView extends BaseGetView<UserInfoController> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             _buildAvatar(context),
-            AppStyles.getCommonDivider(indent: 15.w),
+            MDivider(indent: 15.w),
             _buildNickname(),
-            AppStyles.getCommonDivider(indent: 15.w),
+            MDivider(indent: 15.w),
             _buildNickname(),
-            AppStyles.getCommonDivider(indent: 15.w),
+            MDivider(indent: 15.w),
             _buildNickname(),
-            AppStyles.getCommonDivider(indent: 15.w),
+            MDivider(indent: 15.w),
             _buildNickname(),
-            AppStyles.getCommonDivider(indent: 15.w),
+            MDivider(indent: 15.w),
             _buildNickname(),
-            AppStyles.getCommonDivider(indent: 15.w),
+            MDivider(indent: 15.w),
             _buildNickname(),
           ],
         ),
@@ -63,7 +61,7 @@ class UserInfoView extends BaseGetView<UserInfoController> {
               border: Border.all(color: Colors.grey, width: .5),
             ),
             alignment: Alignment.center,
-            child: ImageLoader.load(url: controller.user?.avatarImg ?? ''),
+            child: ImageLoader.load(url: Global.user?.avatarImg ?? ''),
           ),
           const Padding(padding: EdgeInsets.only(left: 6.0)),
           const Icon(
@@ -87,7 +85,7 @@ class UserInfoView extends BaseGetView<UserInfoController> {
         children: [Text('名称', style: TextStyle(color: Colors.black87, fontSize: 16.sp),),
           Expanded(child: Container()),
           Text(
-            controller.user?.nickname ?? '',
+            Global.user?.nickname ?? '',
             style: TextStyle(color: Colors.black45, fontSize: 16.sp),
           ),
           const Padding(padding: EdgeInsets.only(left: 6.0)),

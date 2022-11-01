@@ -44,11 +44,4 @@ class AppStyles {
       )),
     );
   }
-  static Divider getCommonDivider({double? height, double? thickness,double? indent,double? endIndent,Color? color}) {
-    return Divider(height: height?? 0.5, thickness: thickness?? 0.5, indent: indent?? 0.0, endIndent: endIndent?? 0.0,color: color?? Colors.black12);
-  }
-
-  static VerticalDivider getVerticalDivider({double? width, double? thickness,double? indent,double? endIndent,Color? color}) {
-    return VerticalDivider(width: width?? 0.5, thickness: thickness?? 0.5, indent: indent?? 0.0, endIndent: endIndent?? 0.0,color: color?? Colors.black12);
-  }
 }

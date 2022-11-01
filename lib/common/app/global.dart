@@ -17,7 +17,6 @@ class Global{
   /// 是否 android
   static bool isAndroid = Platform.isAndroid;
 
-
   static DBUtil? dbUtil;
 
   static User? user;
@@ -36,6 +35,7 @@ class Global{
      DioUtil.getInstance()?..openLog()..setHttpsCertificateVerification(enable: true);
      // 业务服务
      Get.put<ConfigService>(ConfigService());
+     Get.put<UserService>(UserService());
   }
 
 

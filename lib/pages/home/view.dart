@@ -2,6 +2,7 @@ import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/tab/tab.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 import 'package:flutter/services.dart';
 
 import 'home.dart';
@@ -44,10 +45,7 @@ class HomeView extends BaseGetView<HomeController> {
         scrollDirection: Axis.horizontal,
         controller: controller.pageController,
         children: controller.pageList,
-        onPageChanged: (page) {
-          LogUtils.GGQ('page-->>>:${page}');
-          controller.onChangePage(page);
-        });
+        onPageChanged: (page) => controller.onPageChanged(page));
   }
 
   BottomAppBar _buildBottomAppBar(BuildContext context) {
@@ -66,19 +64,19 @@ class HomeView extends BaseGetView<HomeController> {
     );
   }
 
-  Widget _buildItemBar<T extends BadgerProviderModel>(int index,ValueKey<String> badgeKey) {
+  Widget _buildItemBar<T extends BadgerProviderModel>(int page,ValueKey<String> badgeKey) {
     return MaterialButton(onPressed: (){
-      controller.onJumpToPage(index);
+      controller.onJumpToPage(page);
     },
         splashColor: Colors.blueGrey.shade100,
         highlightColor: Colors.blueGrey.shade50,
         elevation: 4.0,
         shape: const CircleBorder(),
-        child: _buildItemBox<T>(index,badgeKey)
+        child: _buildItemBox<T>(page,badgeKey)
     );
   }
 
-  Widget _buildItemBox<T extends BadgerProviderModel>(int index,ValueKey<String> badgeKey) {
+  Widget _buildItemBox<T extends BadgerProviderModel>(int page,ValueKey<String> badgeKey) {
     return Center(
       child: GetBuilder<HomeController>(
         id: 'navigator',
@@ -88,8 +86,8 @@ class HomeView extends BaseGetView<HomeController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  _buildIcon(index),
-                  _buildLabel(index),
+                  _buildIcon(page),
+                  _buildLabel(page),
                 ],
               ),
             )
@@ -98,13 +96,13 @@ class HomeView extends BaseGetView<HomeController> {
     );
   }
 
-  Widget _buildIcon(int index) {
+  Widget _buildIcon(int page) {
     // return Image.asset(controller.tabIcon[index], width: 24.w, height: 24.h,color: controller.currentIndex == index ? Colors.blue: Colors.grey);
-    return Image.asset(controller.currentIndex == index? controller.tabActive[index]: controller.tabNormal[index], width: 24.w, height: 24.h);
+    return Image.asset(controller.currentPage == page? controller.tabActive[page]: controller.tabNormal[page], width: 24.w, height: 24.h);
   }
 
-  Widget _buildLabel(int index) {
-    return Text(controller.tabLabel[index],style: TextStyle(fontSize: 12.sp,color: controller.currentIndex == index ? Colors.blue : Colors.grey));
+  Widget _buildLabel(int page) {
+    return Text(controller.tabLabel[page],style: TextStyle(fontSize: 12.sp,color: controller.currentPage == page ? Colors.blue : Colors.grey));
   }
 
 }

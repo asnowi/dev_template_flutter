@@ -5,6 +5,8 @@ import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/config/config.dart';
 import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/entity/entity.dart';
+import 'package:dev_template_flutter/common/service/config_service.dart';
+import 'package:dev_template_flutter/common/service/service.dart';
 import 'package:dev_template_flutter/common/utils/toast.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/view/view.dart';
@@ -35,7 +37,7 @@ class LoginController extends BaseGetController{
     update(['password']);
   }
 
-  bool isAgree = false;
+  bool isAgree = true;
   void setAgree(bool isAgree) {
     this.isAgree = isAgree;
     update(['agree']);
@@ -90,10 +92,9 @@ class LoginController extends BaseGetController{
 
           StorageUtil().setJSON(SaveInfoKey.TOKEN, entity.token);
 
-
           final int? result = await Global.dbUtil?.saveUser(user);
           if(result != null && result >= 0) {
-            Global.user = user;
+            UserService.to.getUser();
             onFinish(isSuccess: true);
           } else {
             ToastUtils.showBar('保存用户信息失败！');

@@ -3,12 +3,13 @@ import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
 import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
+import 'package:provider/single_child_widget.dart';
 
 class HomeController extends BaseGetController with GetSingleTickerProviderStateMixin{
 
   late PageController pageController;
 
-  int currentIndex = 0;
+  int currentPage = 0;
 
   final List<Widget> pageList = [
     MainView(),
@@ -33,7 +34,7 @@ class HomeController extends BaseGetController with GetSingleTickerProviderState
 
   @override
   void onInit() {
-    pageController = PageController(initialPage: currentIndex,viewportFraction: 1, keepPage: true);
+    pageController = PageController(initialPage: currentPage,viewportFraction: 1, keepPage: true);
     pageController.addListener(() {
       LogUtils.GGQ('------pageController---->>>${pageController.position}');
     });
@@ -45,16 +46,13 @@ class HomeController extends BaseGetController with GetSingleTickerProviderState
     super.onReady();
   }
 
-  // 修改索引
-  void onChangePage(int index) {
-    currentIndex = index;
+  void onPageChanged(int page) {
+    currentPage = page;
     update(['navigator']);
   }
-
   // 切换视图
-  void onJumpToPage(int index) {
-    pageController.animateToPage(index, duration: const Duration(milliseconds: 50), curve: Curves.linear);
-    onChangePage(index);
+  void onJumpToPage(int page) {
+    pageController.animateToPage(page, duration: const Duration(milliseconds: 50), curve: Curves.linear);
   }
 
   @override

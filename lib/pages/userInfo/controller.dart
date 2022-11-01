@@ -1,7 +1,7 @@
 
-import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/db/db.dart';
+import 'package:dev_template_flutter/common/service/service.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -13,14 +13,11 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
 
   BuildContext? context;
 
-  User? user;
-
   @override
-  void onInit() {
+  void onInit() async {
     // 注册观察者
     WidgetsBinding.instance.addObserver(this);
     isOpenSetting = false;
-    user = Global.user;
     super.onInit();
   }
 

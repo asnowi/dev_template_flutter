@@ -1,7 +1,7 @@
 import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
-import 'package:dev_template_flutter/common/db/db.dart';
 import 'package:dev_template_flutter/common/router/router.dart';
+import 'package:dev_template_flutter/common/service/service.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
@@ -12,23 +12,15 @@ class MineController extends BaseGetController{
     context.read<BadgeMineModel>().onChange(num);
   }
 
-
-  // final ValueNotifier<User?> user = ValueNotifier(Global.user);
-
-  User? user;
-
-  void onChangeUser() {
-    // user.value = Global.user;
-    user = Global.user;
-    update(['user']);
-  }
-
   @override
   void onReady() {
-    onChangeUser();
     super.onReady();
   }
 
+  void onChangeUser() async{
+    Global.user = await UserService.to.getUser();
+    update(['user']);
+  }
 
   void onLogin() {
     // user.value = User(userId: '1',phone: '13777777777',username: 'ggq',token: '1234567890',avatarImg: '');
@@ -38,12 +30,9 @@ class MineController extends BaseGetController{
     });
   }
 
-
-
   void onLogout() {
-    TipDialog.show(() {
-      Global.user = null;
-      Global.dbUtil?.clearUser();
+    TipDialog.show(() async{
+      await UserService.to.clearUser();
       TipDialog.dismiss();
       onChangeUser();
     },title: '退出登录',content: '请确定要退出该账号?',confirm: '退出',cancel: '取消');
