@@ -69,21 +69,20 @@ class SubmitDialog extends BaseDialog{
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text(confirm?? '提交',style: TextStyle(fontSize: 16, color: controller.getLoading()? Colors.blue[200]:Colors.blue,fontWeight: FontWeight.bold)),
+                                    Text(controller.getLoading()? '请稍后...': confirm?? '提交',style: TextStyle(fontSize: 16, color: controller.getLoading()? Colors.blue[200]:Colors.blue,fontWeight: FontWeight.bold)),
                                     Visibility(
                                         visible: controller.getLoading(),
                                         maintainState: false,
-                                        child: const Padding(padding: EdgeInsets.only(right: 4))),
-                                    Visibility(
-                                        visible: controller.getLoading(),
-                                        maintainState: false,
-                                        child: const SizedBox(
-                                          width: 16,
-                                          height: 16,
-                                          child: SpinKitRing(
-                                            color: Color(0xFF90CAF9),
-                                            size: 13.0,
-                                            lineWidth: 1.0,
+                                        child: const Padding(
+                                          padding: EdgeInsets.only(left: 4.0),
+                                          child: SizedBox(
+                                            width: 16,
+                                            height: 16,
+                                            child: SpinKitRing(
+                                              color: Color(0xFF90CAF9),
+                                              size: 13.0,
+                                              lineWidth: 1.0,
+                                            ),
                                           ),
                                         )
                                     )

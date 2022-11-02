@@ -2,9 +2,9 @@ import 'package:dev_template_flutter/common/app/app.dart';
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/view/view.dart';
-import 'package:dev_template_flutter/pages/home/nav/mine/widget/widget.dart';
 
 import 'mine.dart';
+import 'widget/widget.dart';
 
 class MineView extends BaseGetView<MineController> {
   @override

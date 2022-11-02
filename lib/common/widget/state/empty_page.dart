@@ -16,8 +16,9 @@ class EmptyPage extends StatelessWidget {
             children: [
               Lottie.asset(AssetsProvider.lottiePath('page_empty')),
               const Text('暂无数据',style: TextStyle(
-                color: Colors.white60,
+                color: Colors.black54,
                 fontSize: 14,
+                fontWeight: FontWeight.bold
               ))
             ],
           ),

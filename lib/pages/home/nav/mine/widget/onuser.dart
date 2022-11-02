@@ -59,9 +59,9 @@ class OnUserWidget extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 30.h),
                       child: Column(
                         children: [
-                          _buildItem('收藏',Ionicons.color_palette_outline,() => controller.showSubmitDialog()),
+                          _buildItem('提交',Ionicons.color_palette_outline,() => controller.showSubmitDialog()),
                           MDivider(indent: 30.w),
-                          _buildItem('卡包',Ionicons.color_palette_outline,(){}),
+                          _buildItem('模式',Ionicons.color_palette_outline,() => controller.switchThemeModel()),
                           MDivider(indent: 30.w),
                           _buildItem('Web',Ionicons.color_palette_outline,() => controller.openWebView(context)),
                           MDivider(indent: 30.w),

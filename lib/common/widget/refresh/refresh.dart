@@ -106,7 +106,7 @@ class Refresh extends StatelessWidget {
                     body =  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
-                        SizedBox(width:16.0,height:16.0,child: CircularProgressIndicator(strokeWidth: 1.2,color: Colors.black87,)),
+                        SizedBox(width: 14.0,height: 14.0,child: CircularProgressIndicator(strokeWidth: 1.2,color: Colors.black87,)),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 6.0)),
                         Text('加载中...',style: textStyle)
                       ],

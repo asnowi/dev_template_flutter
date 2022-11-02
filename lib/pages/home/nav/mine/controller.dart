@@ -57,4 +57,8 @@ class MineController extends BaseGetController{
     });
   }
 
+  void switchThemeModel() {
+    ConfigService.to.switchThemeModel();
+  }
+
 }

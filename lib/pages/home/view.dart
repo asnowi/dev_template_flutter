@@ -53,7 +53,6 @@ class HomeView extends BaseGetView<HomeController> {
     return BottomAppBar(
       elevation: 6,
       notchMargin: 6.0,
-      color: Colors.white,
       shape: const CustomCircularNotchedRectangle(),
       child: Row(
         children: [
