@@ -43,6 +43,7 @@ class BannerWidget extends StatelessWidget {
                 space: 4.0
               )
             ),
+            onTap: (index) => controller.onBnnner(index),
             control: SwiperControl(
                 color: Colors.white54,
                 disableColor: Colors.grey.shade400,

@@ -91,4 +91,8 @@ class MainController extends BaseGetController{
       'search':'啊啊啊'
     });
   }
+
+  void onBnnner(index) {
+    ToastUtils.show(index.toString());
+  }
 }
