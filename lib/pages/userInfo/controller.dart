@@ -50,7 +50,7 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
         maxAssets: 1,
         requestType: RequestType.image,
         textDelegate: const AssetPickerTextDelegate(),
-        pickerTheme: AssetPicker.themeData(Colors.lightBlueAccent,
+        pickerTheme: AssetPicker.themeData(Colors.blueAccent,
             light: true)
       );
       final List<AssetEntity>? result = await AssetPicker.pickAssets(context,pickerConfig: pickerConfig);
