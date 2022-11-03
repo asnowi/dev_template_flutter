@@ -87,6 +87,8 @@ class MainController extends BaseGetController{
   }
 
   void onSearch() {
-    Get.toNamed(AppRoutes.SEARCH);
+    Get.toNamed(AppRoutes.SEARCH,arguments: {
+      'search':'啊啊啊'
+    });
   }
 }

@@ -22,7 +22,7 @@ class UIUtils {
   }
 
 
-  static IconButton onAppBarBack({VoidCallback? onBack}) {
+  static IconButton onAppBarBack({VoidCallback? onBack,Color? iconColor}) {
     return IconButton(
       onPressed: (){
         if(onBack != null) {
@@ -30,9 +30,9 @@ class UIUtils {
         }
       },
       splashRadius: AppDimens.backRadius,
-      icon: const Icon(
+      icon: Icon(
         Icons.arrow_back_ios,
-        color: Colors.black87,
+        color: iconColor?? Colors.black87,
         size: 18,
       ),
     );
