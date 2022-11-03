@@ -1,5 +1,6 @@
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 
 import 'search.dart';
 
@@ -104,9 +105,25 @@ class SearchView extends BaseGetView<SearchController> {
   }
 
   Widget _buildContent(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text('搜索'),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      child: Center(
+        child: Container(
+          constraints: BoxConstraints.tight(screenSize()),
+          child: Column(
+            children: [
+              Text('1'),
+              Text('1'),
+              Text('1'),
+              Text('1'),
+              Text('1'),
+              Text('1'),
+              Text('1'),
+              Text('1'),
+              Text('1'),
+            ],
+          ),
+        ),
       ),
     );
   }

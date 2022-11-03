@@ -10,8 +10,7 @@ class MineView extends BaseGetView<MineController> {
   @override
   Widget build(BuildContext context) {
     return KeepAliveWrapper(child: SingleChildScrollView(
-        physics:
-        const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         child: GetBuilder<MineController>(
           id: 'user',
           builder: (_) => Global.user == null? UnLoginWidget(controller: controller) : OnUserWidget(controller: controller),

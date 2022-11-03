@@ -6,22 +6,25 @@ class EmptyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Center(
         child: Container(
-          width: 200,
-          height: 300,
+          constraints: BoxConstraints.tight(screenSize()),
           alignment: Alignment.center,
-          child: Column(
-            children: [
-              Lottie.asset(AssetsProvider.lottiePath('page_empty')),
-              const Text('暂无数据',style: TextStyle(
-                color: Colors.black54,
-                fontSize: 14,
-                fontWeight: FontWeight.bold
-              ))
-            ],
-          ),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints.expand(width: 200,height: 300),
+            child: Column(
+              children: [
+                Lottie.asset(AssetsProvider.lottiePath('page_empty')),
+                const Text('暂无数据',style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold
+                ))
+              ],
+            ),
+          )
         ),
       ),
     );

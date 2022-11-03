@@ -1,5 +1,6 @@
 
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingPage extends StatelessWidget {
@@ -12,7 +13,7 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Container(
         constraints: BoxConstraints.tight(screenSize()),
         alignment: Alignment.center,

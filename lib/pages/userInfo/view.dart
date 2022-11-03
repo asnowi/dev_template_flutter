@@ -19,8 +19,7 @@ class UserInfoView extends BaseGetView<UserInfoController> {
 
   Widget _buildContent(BuildContext context) {
     return SingleChildScrollView(
-      physics:
-          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Container(
         constraints: BoxConstraints.tight(screenSize()),
         child: Column(
