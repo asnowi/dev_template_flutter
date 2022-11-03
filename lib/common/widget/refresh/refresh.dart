@@ -148,7 +148,7 @@ class Refresh extends StatelessWidget {
 
 
   Widget buildLoading(){
-    return const LoadingPage();
+    return LoadingPage();
   }
 
   Widget buildEmpty(){

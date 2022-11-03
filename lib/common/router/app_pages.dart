@@ -4,6 +4,7 @@ import 'package:dev_template_flutter/pages/home/home.dart';
 import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
 import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
 import 'package:dev_template_flutter/pages/login/login.dart';
+import 'package:dev_template_flutter/pages/search/search.dart';
 import 'package:dev_template_flutter/pages/splash/splash.dart';
 import 'package:dev_template_flutter/pages/unknown/unknown.dart';
 import 'package:dev_template_flutter/pages/userInfo/userInfo.dart';
@@ -85,6 +86,15 @@ class AppPages {
         binding: WebBinding(),
         transition: Transition.rightToLeft,
         transitionDuration: _transitionDuration
+    ),
+
+    /// 搜索
+    GetPage(
+        name: AppRoutes.SEARCH,
+        page: () => SearchView(),
+        binding: SearchBinding(),
+        transition: Transition.fadeIn,
+        transitionDuration: const Duration(milliseconds: 50)
     ),
 
     /// 错误页

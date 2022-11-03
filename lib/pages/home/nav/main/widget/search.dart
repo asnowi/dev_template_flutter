@@ -23,13 +23,18 @@ class SearchWidget extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 1.0),
             color: Colors.white
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: IconText(
-          alignment: MainAxisAlignment.start,
-          icon: const Icon(Ionicons.search,size: 14,color: Colors.grey),
-          text: Text('search',style: TextStyle(color: Colors.grey,fontSize: 16.sp,fontWeight: FontWeight.normal),
+        child: MaterialButton(
+          onPressed: () => controller.onSearch(),
+          splashColor: Colors.blueGrey.shade100,
+          highlightColor: Colors.blueGrey.shade50,
+          elevation: 0.0,
+          child: IconText(
+            alignment: MainAxisAlignment.start,
+            icon: const Icon(Ionicons.search,size: 14,color: Colors.grey),
+            text: Text('search',style: TextStyle(color: Colors.grey,fontSize: 16.sp,fontWeight: FontWeight.normal),
+            ),
           ),
-        ),
+        )
       ),
       stretch: true,
       collapsedHeight: 62.h,

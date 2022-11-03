@@ -7,7 +7,7 @@ abstract class BaseGetView<T> extends GetView<T>{
 
 
   Widget buildLoading(){
-    return const LoadingPage();
+    return LoadingPage();
   }
 
   Widget buildEmpty(){

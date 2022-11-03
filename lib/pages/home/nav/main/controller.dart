@@ -1,4 +1,5 @@
 import 'package:dev_template_flutter/common/base/base.dart';
+import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
@@ -83,5 +84,9 @@ class MainController extends BaseGetController{
     loadState = LoadState.loading;
     updateRefresh();
     initPullLoading();
+  }
+
+  void onSearch() {
+    Get.toNamed(AppRoutes.SEARCH);
   }
 }
