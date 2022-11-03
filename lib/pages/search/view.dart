@@ -21,8 +21,8 @@ class SearchView extends BaseGetView<SearchController> {
   Widget _buildSearch(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: 42.h),
+        Expanded(child: SizedBox(
+          height: 40.h,
           child: GetBuilder<SearchController>(
             id: 'search',
             builder: (_) => TextField(

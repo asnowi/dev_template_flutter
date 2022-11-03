@@ -95,4 +95,12 @@ class MainController extends BaseGetController{
   void onBnnner(index) {
     ToastUtils.show(index.toString());
   }
+
+  void onScan() {
+    ToastUtils.show('scan');
+  }
+
+  void onLocation() {
+    ToastUtils.show('位置');
+  }
 }
