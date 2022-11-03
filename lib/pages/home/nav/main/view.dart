@@ -32,7 +32,7 @@ class MainView extends BaseGetView<MainController> {
           shrinkWrap: true,
           slivers: <Widget>[
             SearchWidget(controller: controller),
-            BannerWidget(controller: controller),
+            BannerWidget(controller: controller,),
             GridWidget(controller: controller),
             SliverList(delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {

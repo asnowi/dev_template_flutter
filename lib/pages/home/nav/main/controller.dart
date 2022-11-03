@@ -3,6 +3,7 @@ import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MainController extends BaseGetController{
 
@@ -14,6 +15,13 @@ class MainController extends BaseGetController{
   final PageController gridPageController = PageController(initialPage: 0,viewportFraction: 1, keepPage: true);
 
   List<String> itemList = [];
+
+  List<String> bannerList = [
+    'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
+    'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
+    'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
+    'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500'
+  ];
 
   @override
   void onInit() {
@@ -27,7 +35,6 @@ class MainController extends BaseGetController{
     initPullLoading();
     super.onReady();
   }
-
 
   void onBadgeChange(BuildContext context,String? num) {
     context.read<BadgeMineModel>().onChange(num);

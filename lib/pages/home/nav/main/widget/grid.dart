@@ -48,16 +48,18 @@ class GridWidget extends StatelessWidget {
     );
   }
   Widget _buildGridView(int page) {
-    return GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    return GridView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         //设置列数
-      crossAxisCount: 3,
-      //设置横向间距
-      crossAxisSpacing: 4,
-      //设置主轴间距
-      mainAxisSpacing: 4,
-      //宽高比
-      childAspectRatio: 12/6
-    ), itemBuilder: (context,index){
+          crossAxisCount: 3,
+          //设置横向间距
+          crossAxisSpacing: 4,
+          //设置主轴间距
+          mainAxisSpacing: 4,
+          //宽高比
+          childAspectRatio: 12/6
+      ), itemBuilder: (context,index){
       return Container(
         alignment: Alignment.center,
         child: Column(
@@ -78,15 +80,16 @@ class GridWidget extends StatelessWidget {
       child: SmoothPageIndicator(
         controller: controller.gridPageController,
         count: 2,
-        effect: const WormEffect(
-            dotHeight: 6,
-            dotWidth: 6,
-            type: WormType.thin,
-            strokeWidth: 17,
-            dotColor: Colors.black26,
-            activeDotColor: Colors.blueAccent
+        effect: const SlideEffect(
+            radius:  1.0,
+            dotWidth:  10.0,
+            dotHeight:  3.0,
+            paintStyle:  PaintingStyle.fill,
+            dotColor: Colors.white38,
+            activeDotColor: Colors.white70
         ),
       ),
     );
   }
 }
+
