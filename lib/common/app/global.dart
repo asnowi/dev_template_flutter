@@ -38,8 +38,8 @@ class Global{
      Get.put<ConfigService>(ConfigService());
      Get.put<UserService>(UserService());
 
+     // 弹框控制器
      Get.put<DialogController>(DialogController());
-
   }
 
 

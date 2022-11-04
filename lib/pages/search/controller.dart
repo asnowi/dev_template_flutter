@@ -3,7 +3,8 @@ import 'package:dev_template_flutter/common/utils/utils.dart';
 
 class SearchController extends BaseGetController {
 
-  final TextEditingController searchController = TextEditingController();
+  final TextEditingController inputController = TextEditingController();
+
 
   String? input = '';
 
@@ -25,10 +26,12 @@ class SearchController extends BaseGetController {
     if(map != null) {
       input = map['search'];
       if(!UIUtils.isEmpty(input)) {
-        searchController.text = input!;
+        inputController.text = input!;
         setSearch(true);
       }
     }
     super.onReady();
   }
+
+
 }

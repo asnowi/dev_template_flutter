@@ -88,6 +88,7 @@ dependencies:
   # 徽章
   badges: ^2.0.3
   # 常用图标 https://ionicons.ez-connect.net/#/
+  # Icon(Ionicons.add)
   ionicons: ^0.2.1
   # 动画
   flutter_spinkit: ^5.1.0

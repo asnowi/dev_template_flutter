@@ -4,7 +4,6 @@ import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class MainController extends BaseGetController{
 
@@ -23,6 +22,7 @@ class MainController extends BaseGetController{
     'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
     'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500'
   ];
+
 
   @override
   void onInit() {
@@ -86,13 +86,14 @@ class MainController extends BaseGetController{
     initPullLoading();
   }
 
-  void onSearch() {
+  void onSearch(BuildContext context) {
     Get.toNamed(AppRoutes.SEARCH,arguments: {
       'search':'啊啊啊'
     });
+    // showSearch(context: context,delegate: MySearchDelegate(searchController));
   }
 
-  void onBnnner(index) {
+  void onBanner(index) {
     ToastUtils.show(index.toString());
   }
 

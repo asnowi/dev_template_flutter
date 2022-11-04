@@ -47,7 +47,7 @@ class SearchWidget extends StatelessWidget {
                     color: Colors.white
                 ),
                 child: MaterialButton(
-                  onPressed: () => controller.onSearch(),
+                  onPressed: () => controller.onSearch(context),
                   splashColor: Colors.blueGrey.shade100,
                   highlightColor: Colors.blueGrey.shade50,
                   elevation: 0.0,

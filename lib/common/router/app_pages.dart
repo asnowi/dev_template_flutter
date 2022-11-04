@@ -94,7 +94,7 @@ class AppPages {
         page: () => SearchView(),
         binding: SearchBinding(),
         transition: Transition.fadeIn,
-        transitionDuration: const Duration(milliseconds: 50)
+        transitionDuration: const Duration(milliseconds: 10)
     ),
 
     /// 错误页
