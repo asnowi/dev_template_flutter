@@ -1,4 +1,5 @@
 import 'package:dev_template_flutter/common/app/app.dart';
+import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:hive/hive.dart';
 import 'dart:io';
@@ -13,6 +14,8 @@ class DBUtil{
 
   /// 用户信息
   late Box userBox;
+  // 搜索记录
+  late Box searchBox;
 
   /// 初始化，需要在 main.dart 调用
   /// <https://docs.hivedb.dev/>
@@ -24,6 +27,7 @@ class DBUtil{
     /// <https://docs.hivedb.dev/#/custom-objects/type_adapters>
     /// Hive.registerAdapter(SettingsAdapter());
     Hive.registerAdapter(UserAdapter());
+    Hive.registerAdapter(SearchAdapter());
   }
 
   /// 初始化 Box
@@ -32,6 +36,7 @@ class DBUtil{
       instance = DBUtil();
       // await Hive.initFlutter();
       instance?.userBox = await Hive.openBox('user');
+      instance?.searchBox = await Hive.openBox('search');
     }
     return instance;
   }
@@ -58,4 +63,47 @@ class DBUtil{
     }
     return false;
   }
+
+//---------↑-↑-↑-user-↑-↑-↑----------------
+
+//---------搜索记录----------------
+
+  Future<int?> saveSearch(Search search) async{
+    LogUtils.GGQ('------saveSearch------>>>${search.toString()}');
+    List<Search> list = getSearchList();
+    if(list.length >= 5) {
+      await removeSearchByIndex(0);
+    }
+    return Global.dbUtil?.searchBox.add(search);
+  }
+
+  List<Search> getSearchList(){
+    List<Search> list = [];
+    final values = Global.dbUtil?.searchBox.values;
+    LogUtils.GGQ('========getSearchList========>${values?.length}');
+    if(values != null) {
+      for (var element in values) {
+        final search = (element as Search);
+        list.add(search);
+      }
+    }
+    return list;
+  }
+
+  Future<bool> clearSearch() async{
+    int? result = await Global.dbUtil?.searchBox.clear();
+    LogUtils.GGQ('---clearSearch-->${result}');
+    if(result != null && result >= 0) {
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> removeSearchByIndex(int index) {
+    return Global.dbUtil?.searchBox.deleteAt(index)?? Future<void>(() => 0);
+  }
+
+//---------↑-↑-↑-search-↑-↑-↑----------------
+
+
 }

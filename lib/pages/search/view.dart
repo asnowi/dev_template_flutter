@@ -1,5 +1,6 @@
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/values/dimens.dart';
 import 'package:dev_template_flutter/common/widget/view/view.dart';
 import 'package:dev_template_flutter/pages/search/widget/widget.dart';
 
@@ -108,17 +109,39 @@ class SearchView extends BaseGetView<SearchController> {
   }
 
   Widget _buildRecord() {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      itemBuilder: (BuildContext context, int index) => InkWell(
-        onTap: () => ToastUtils.show(index.toString()),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 12.0),
-          child: Text(index.toString(),style: const TextStyle(color: Colors.black),),
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: GetBuilder<SearchController>(
+          id: 'record',
+          builder: (_) => controller.isRecord? Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Record',style: TextStyle(color: Colors.redAccent,fontSize: 22.sp,fontWeight: FontWeight.bold),),
+                  IconButton(
+                      splashRadius: AppDimens.backRadius,
+                      onPressed: () => controller.clearRecord(), icon: const Icon(Ionicons.trash_outline,color: Colors.grey,size: 22.0,))
+                ],
+              ),
+              Expanded(child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                separatorBuilder: (BuildContext context, int index) =>
+                const Divider(height: .1, color: Colors.black12),
+                itemBuilder: (BuildContext context, int index) => InkWell(
+                  onTap: () => ToastUtils.show(index.toString()),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 12.0),
+                    child: Text(controller.recordList![index].content?? '',style: const TextStyle(color: Colors.black),),
+                  ),
+                ),
+
+                itemCount: controller.recordList?.length?? 0,
+              ))
+            ],
+          ): Container()
       ),
-      itemCount: 10,
     );
   }
 

@@ -73,7 +73,7 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget{
             ),
           ),),
           Padding(padding:EdgeInsets.symmetric(horizontal: 10.0.w)),
-          TextButton(onPressed: () => ToastUtils.show(controller.inputController.text),
+          TextButton(onPressed: () => controller.onSearch(controller.inputController.text),
               style: ButtonStyle(
                 textStyle: MaterialStateProperty.all(TextStyle(
                   color: Colors.white,

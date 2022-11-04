@@ -102,6 +102,6 @@ class MainController extends BaseGetController{
   }
 
   void onLocation() {
-    ToastUtils.show('位置');
+    Get.toNamed(AppRoutes.LOCATION);
   }
 }

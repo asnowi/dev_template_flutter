@@ -96,6 +96,9 @@ dependencies:
   wechat_assets_picker: ^8.1.3
   # 拍照及录制视频
   wechat_camera_picker: ^3.6.3
+  # az列表
+  azlistview: ^2.0.0
+
 
 
 
