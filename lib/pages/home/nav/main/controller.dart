@@ -3,6 +3,7 @@ import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
+import 'package:dev_template_flutter/pages/preview/widget/widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class MainController extends BaseGetController{
@@ -23,6 +24,8 @@ class MainController extends BaseGetController{
     'https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500'
   ];
 
+  List<String> gridList1 = ['fl_chart','preview','3','4','5','6'];
+  List<String> gridList2 = ['11','22','33','44','55'];
 
   @override
   void onInit() {
@@ -103,5 +106,40 @@ class MainController extends BaseGetController{
 
   void onLocation() {
     Get.toNamed(AppRoutes.LOCATION);
+  }
+
+  void onGridItem(int page, int index) {
+    if(page == 1) {
+      switch(index){
+        case 0: {
+          ToastUtils.show('aaaa');
+          break;
+        }
+        case 1: {
+          List<Photo> photos = [
+            Photo(url: 'https://picsum.photos/seed/picsum/200?random=${RandomUtils.to.random}',title: '图片1'),
+            Photo(url: 'https://picsum.photos/seed/picsum/200?random=${RandomUtils.to.random}',title: '图片2'),
+            Photo(url: 'https://picsum.photos/seed/picsum/200?random=${RandomUtils.to.random}',title: '图片3'),
+          ];
+          Get.toNamed(AppRoutes.PREVIEW,arguments: {'photos': photos});
+          break;
+        }
+        default: {
+          ToastUtils.show(gridList1[index]);
+        }
+        break;
+      }
+    } else if(page == 2) {
+      switch(index){
+        case 0: {
+          ToastUtils.show('bbb');
+          break;
+        }
+        default: {
+          ToastUtils.show(gridList2[index]);
+        }
+        break;
+      }
+    }
   }
 }

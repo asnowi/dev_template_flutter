@@ -100,8 +100,8 @@ dependencies:
   azlistview: ^2.0.0
   # 汉字转拼音
   lpinyin: ^2.0.3
-
-
+  # 大图预览
+  photo_view: ^0.14.0
 
 
 

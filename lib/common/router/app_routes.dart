@@ -13,13 +13,12 @@ abstract class AppRoutes {
   static const SETTING = '/setting';
   static const BLUETOOTH = '/bluetooth';
   static const WEB = '/web';
-
-  /// demo
   static const LIST = '/list';
   static const BANNER = '/banner';
   static const USER_INFO = '/userInfo';
   static const SEARCH = '/search';
   static const LOCATION = '/location';
+  static const PREVIEW = '/preview';
 
 
   static const TEST = '/test';

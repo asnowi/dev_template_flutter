@@ -4,10 +4,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class GridWidget extends StatelessWidget {
   GridWidget({Key? key,
-    required this.controller
+    required this.controller,
   }) : super(key: key);
 
-  late MainController controller;
+  MainController controller;
+
 
   List<Widget> _list(context) {
     return [
@@ -15,6 +16,7 @@ class GridWidget extends StatelessWidget {
       _buildPageItem(2),
     ];
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +50,10 @@ class GridWidget extends StatelessWidget {
     );
   }
   Widget _buildGridView(int page) {
+    List<String> list = getPageListLength(page);
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         //设置列数
           crossAxisCount: 3,
           //设置横向间距
@@ -58,26 +61,26 @@ class GridWidget extends StatelessWidget {
           //设置主轴间距
           mainAxisSpacing: 4,
           //宽高比
-          childAspectRatio: 12/6
+          childAspectRatio: 12/ list.length
       ), itemBuilder: (context,index){
       return Container(
         alignment: Alignment.center,
         child: MaterialButton(
-          onPressed: () => ToastUtils.show('msg'),
+          onPressed: () => controller.onGridItem(page,index),
           splashColor: Colors.white12,
           highlightColor: Colors.white10,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              FlutterLogo(),
-              Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
-              Text('aaa')
+            children: [
+              const FlutterLogo(),
+              const Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
+              Text(list[index])
             ],
           ),
         ),
       );
-    },itemCount: 6,);
+    },itemCount: list.length);
   }
 
   Widget _buildIndicator(int page) {
@@ -97,6 +100,10 @@ class GridWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<String> getPageListLength(int page) {
+    return page == 1? controller.gridList1: controller.gridList2;
   }
 }
 
