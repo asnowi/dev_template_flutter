@@ -37,7 +37,6 @@ class MineController extends BaseGetController{
       await UserService.to.clearUser();
       onChangeUser();
     },title: '退出登录',content: '请确定要退出该账号?',confirm: '退出',cancel: '取消');
-
   }
 
   void onUserInfo() {
@@ -59,6 +58,10 @@ class MineController extends BaseGetController{
 
   void switchThemeModel() {
     ConfigService.to.switchThemeModel();
+  }
+
+  void openSetting() {
+    Get.toNamed(AppRoutes.SETTING, preventDuplicates: false);
   }
 
 }

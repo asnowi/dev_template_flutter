@@ -66,8 +66,11 @@ class OnUserWidget extends StatelessWidget {
                           _buildItem('Web',Ionicons.color_palette_outline,() => controller.openWebView(context)),
                           MDivider(indent: 30.w),
                           _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(() => {
-                            ToastUtils.show('权限')
+                            PermissionDialog.dismiss(),
+                            controller.openSetting()
                           })),
+                          MDivider(indent: 30.w),
+                          _buildItem('设置2',Ionicons.color_palette_outline,() => controller.openSetting()),
                           Container(
                             margin: EdgeInsets.only(top: 100.h),
                             child: TextButton(onPressed: () => controller.onLogout(),

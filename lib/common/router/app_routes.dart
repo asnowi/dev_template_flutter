@@ -1,3 +1,5 @@
+import 'package:webview_flutter/platform_interface.dart';
+
 abstract class AppRoutes {
 
   static const INDEX = '/';

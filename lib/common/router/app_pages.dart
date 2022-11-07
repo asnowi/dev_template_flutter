@@ -6,6 +6,7 @@ import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
 import 'package:dev_template_flutter/pages/location/location.dart';
 import 'package:dev_template_flutter/pages/login/login.dart';
 import 'package:dev_template_flutter/pages/search/search.dart';
+import 'package:dev_template_flutter/pages/setting/setting.dart';
 import 'package:dev_template_flutter/pages/splash/splash.dart';
 import 'package:dev_template_flutter/pages/unknown/unknown.dart';
 import 'package:dev_template_flutter/pages/userInfo/userInfo.dart';
@@ -89,6 +90,15 @@ class AppPages {
         transitionDuration: _transitionDuration
     ),
 
+    /// Setting
+    GetPage(
+        name: AppRoutes.SETTING,
+        page: () => SettingView(),
+        binding: SettingBinding(),
+        transition: Transition.rightToLeft,
+        transitionDuration: _transitionDuration
+    ),
+
     /// Location
     GetPage(
         name: AppRoutes.LOCATION,
@@ -121,9 +131,10 @@ class AppPages {
   // 未知页
   static GetPage unknownPage(){
     return GetPage(
-    name: AppRoutes.UNKNOWN,
-    page: () => UnknownView(),
-    binding: UnknownBinding(),
-    transition: Transition.fadeIn);
+      name: AppRoutes.UNKNOWN,
+      page: () => UnknownView(),
+      binding: UnknownBinding(),
+      transition: Transition.fadeIn,
+    );
   }
 }
