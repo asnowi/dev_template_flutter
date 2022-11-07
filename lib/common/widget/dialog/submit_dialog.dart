@@ -103,8 +103,8 @@ class SubmitDialog extends BaseDialog{
                             onPressed: () => {
                               controller.onLoading(false),
                               if(onCancel != null) {
-                                onCancel(),
-                                dismiss()
+                                dismiss(),
+                                onCancel()
                               } else {
                                 dismiss()
                               },

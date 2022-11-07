@@ -65,14 +65,13 @@ class OnUserWidget extends StatelessWidget {
                           MDivider(indent: 30.w),
                           _buildItem('Web',Ionicons.color_palette_outline,() => controller.openWebView(context)),
                           MDivider(indent: 30.w),
-                          _buildItem('设置',Ionicons.color_palette_outline,() => PermissionDialog.show(() => {
-                            PermissionDialog.dismiss(),
+                          _buildItem('设置1',Ionicons.color_palette_outline,() => PermissionDialog.show(() => {
                             controller.openSetting()
                           })),
                           MDivider(indent: 30.w),
                           _buildItem('设置2',Ionicons.color_palette_outline,() => controller.openSetting()),
                           MDivider(indent: 30.w),
-                          _buildItem('test',Ionicons.add_circle,() => controller.openTest()),
+                          _buildItem('loading',Ionicons.add_circle,() => controller.openTest()),
                           Container(
                             margin: EdgeInsets.only(top: 100.h),
                             child: TextButton(onPressed: () => controller.onLogout(),

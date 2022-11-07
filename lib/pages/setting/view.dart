@@ -10,8 +10,10 @@ class SettingView extends BaseGetView<SettingController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('setting'),
+    return Center(
+      child: Container(
+        child: Text('setting'),
+      ),
     );
   }
 

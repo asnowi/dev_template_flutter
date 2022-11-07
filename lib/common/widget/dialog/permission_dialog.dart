@@ -89,8 +89,8 @@ class PermissionDialog {
                                 )),
                               ),
                               onPressed: () => {
+                                dismiss(),
                                 onConfirm(),
-                                dismiss()
                               },
                               child: Text(confirm?? '确定',style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
                             )

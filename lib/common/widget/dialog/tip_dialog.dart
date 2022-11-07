@@ -58,8 +58,8 @@ class TipDialog extends BaseDialog{
                                 )),
                               ),
                               onPressed: () => {
-                                onConfirm(),
-                                dismiss()
+                                dismiss(),
+                                onConfirm()
                               },
                               child: Text(confirm?? '确定',style: const TextStyle(fontSize: 16, color: Colors.blue,fontWeight: FontWeight.bold)),
                             )
