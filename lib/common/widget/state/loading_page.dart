@@ -1,14 +1,11 @@
-
 import 'package:dev_template_flutter/common/utils/utils.dart';
-import 'package:dev_template_flutter/common/widget/view/view.dart';
-import 'package:shimmer/shimmer.dart';
+
+import 'state.dart';
 
 class LoadingPage extends StatelessWidget {
 
   LoadingPage({Key? key}) : super(key: key);
 
-  final Color baseColor = Colors.grey.shade100;
-  final Color highlightColor = Colors.grey.shade200;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,7 @@ class LoadingPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _buildBlock(),
+                _buildBlock(width: 96.0,height: 88.0),
                 const Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -57,6 +54,7 @@ class LoadingPage extends StatelessWidget {
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
             _buildItem(width: 0.68.sw),
             const Padding(padding: EdgeInsets.symmetric(vertical: 10.0)),
+            _buildItem(width: 0.20.sw),
           ],
         ),
       ),
@@ -64,34 +62,12 @@ class LoadingPage extends StatelessWidget {
   }
 
   Widget _buildBlock({double? width,double? height,double? radius}) {
-    return Shimmer.fromColors(
-      baseColor: baseColor,
-      highlightColor: highlightColor,
-      child: Container(
-        width: width?? 96.0,
-        height: height?? 88.0,
-        alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(radius?? 4.0)
-        ),
-      ),
-    );
+    return ShimmerWidget(width: width,height: height,radius: radius);
   }
 
   Widget _buildItem({double? width,double? height,double? radius}) {
-    return Shimmer.fromColors(
-      baseColor: baseColor,
-      highlightColor: highlightColor,
-      child: Container(
-        width: width?? 0.82.sw,
-        height: height?? 32.h,
-        alignment: Alignment.centerLeft,
-        decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(radius?? 4.0)
-        ),
-      ),
-    );
+    return ShimmerWidget(width: width,height: height,radius: radius);
   }
 }
+
+
