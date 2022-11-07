@@ -64,4 +64,8 @@ class MineController extends BaseGetController{
     Get.toNamed(AppRoutes.SETTING, preventDuplicates: false);
   }
 
+  void openTest() {
+    Get.toNamed(AppRoutes.TEST);
+  }
+
 }

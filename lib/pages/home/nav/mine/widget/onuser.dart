@@ -71,6 +71,8 @@ class OnUserWidget extends StatelessWidget {
                           })),
                           MDivider(indent: 30.w),
                           _buildItem('设置2',Ionicons.color_palette_outline,() => controller.openSetting()),
+                          MDivider(indent: 30.w),
+                          _buildItem('test',Ionicons.add_circle,() => controller.openTest()),
                           Container(
                             margin: EdgeInsets.only(top: 100.h),
                             child: TextButton(onPressed: () => controller.onLogout(),

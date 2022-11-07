@@ -26,14 +26,16 @@ class LoadingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 _buildBlock(),
-                const Padding(padding: EdgeInsets.symmetric(horizontal: 2.0)),
+                const Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildItem(width: 0.42.sw,height: 22.h,radius: 2.0),
-                    const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-                    _buildItem(width: 0.58.sw,height: 22.h,radius: 2.0),
+                    _buildItem(width: 0.60.sw,height: 26.h,radius: 2.0),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
+                    _buildItem(width: 0.40.sw,height: 26.h,radius: 2.0),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
+                    _buildItem(width: 0.20.sw,height: 26.h,radius: 2.0),
                   ],
                 )
               ],
@@ -66,8 +68,8 @@ class LoadingPage extends StatelessWidget {
       baseColor: baseColor,
       highlightColor: highlightColor,
       child: Container(
-        width: width?? 50.0,
-        height: height?? 50.0,
+        width: width?? 96.0,
+        height: height?? 88.0,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             color: Colors.grey.shade200,
@@ -83,7 +85,7 @@ class LoadingPage extends StatelessWidget {
       highlightColor: highlightColor,
       child: Container(
         width: width?? 0.82.sw,
-        height: height?? 36.h,
+        height: height?? 32.h,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             color: Colors.grey.shade200,

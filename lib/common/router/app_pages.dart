@@ -8,6 +8,7 @@ import 'package:dev_template_flutter/pages/login/login.dart';
 import 'package:dev_template_flutter/pages/search/search.dart';
 import 'package:dev_template_flutter/pages/setting/setting.dart';
 import 'package:dev_template_flutter/pages/splash/splash.dart';
+import 'package:dev_template_flutter/pages/test/test.dart';
 import 'package:dev_template_flutter/pages/unknown/unknown.dart';
 import 'package:dev_template_flutter/pages/userInfo/userInfo.dart';
 import 'package:dev_template_flutter/pages/web/web.dart';
@@ -108,6 +109,14 @@ class AppPages {
         transitionDuration: _transitionDuration
     ),
 
+    /// Test
+    GetPage(
+        name: AppRoutes.TEST,
+        page: () => TestView(),
+        binding: TestBinding(),
+        transition: Transition.rightToLeft,
+        transitionDuration: _transitionDuration
+    ),
     /// 搜索
     GetPage(
         name: AppRoutes.SEARCH,
