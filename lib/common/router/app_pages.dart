@@ -6,6 +6,7 @@ import 'package:dev_template_flutter/pages/home/nav/mine/mine.dart';
 import 'package:dev_template_flutter/pages/location/location.dart';
 import 'package:dev_template_flutter/pages/login/login.dart';
 import 'package:dev_template_flutter/pages/preview/preview.dart';
+import 'package:dev_template_flutter/pages/scanner/scanner.dart';
 import 'package:dev_template_flutter/pages/search/search.dart';
 import 'package:dev_template_flutter/pages/setting/setting.dart';
 import 'package:dev_template_flutter/pages/splash/splash.dart';
@@ -117,7 +118,14 @@ class AppPages {
         transition: Transition.leftToRight,
         transitionDuration: _transitionDuration
     ),
-
+    /// 扫描二维码
+    GetPage(
+        name: AppRoutes.SCANNER,
+        page: () => ScannerView(),
+        binding: ScannerBinding(),
+        transition: Transition.fadeIn,
+        transitionDuration: _transitionDuration
+    ),
     /// Test
     GetPage(
         name: AppRoutes.TEST,
@@ -126,6 +134,7 @@ class AppPages {
         transition: Transition.rightToLeft,
         transitionDuration: _transitionDuration
     ),
+
     /// 搜索
     GetPage(
         name: AppRoutes.SEARCH,

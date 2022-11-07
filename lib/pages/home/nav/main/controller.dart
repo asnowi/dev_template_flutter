@@ -93,7 +93,6 @@ class MainController extends BaseGetController{
     Get.toNamed(AppRoutes.SEARCH,arguments: {
       'search':'啊啊啊'
     });
-    // showSearch(context: context,delegate: MySearchDelegate(searchController));
   }
 
   void onBanner(index) {
@@ -101,7 +100,7 @@ class MainController extends BaseGetController{
   }
 
   void onScan() {
-    ToastUtils.show('scan');
+    Get.toNamed(AppRoutes.SCANNER);
   }
 
   void onLocation() {
