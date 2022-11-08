@@ -105,7 +105,8 @@ dependencies:
   # svg
   flutter_svg: ^1.1.6
   # 扫描二维码
-  qr_code_scanner: ^1.0.1
+  # qr_code_scanner: ^1.0.1
+  flutter_hms_scan_kit: ^1.0.3
   # 音频
   just_audio: ^0.9.30
   audio_session: ^0.1.10

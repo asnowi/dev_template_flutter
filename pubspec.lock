@@ -300,6 +300,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.5"
+  flutter_hms_scan_kit:
+    dependency: "direct main"
+    description:
+      name: flutter_hms_scan_kit
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.3"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -749,13 +756,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.0"
-  qr_code_scanner:
-    dependency: "direct main"
-    description:
-      name: qr_code_scanner
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.1"
   quiver:
     dependency: transitive
     description:

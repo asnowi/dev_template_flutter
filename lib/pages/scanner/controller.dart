@@ -2,14 +2,11 @@ import 'dart:io';
 
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter_hms_scan_kit/scan_result.dart';
 
 class ScannerController extends BaseGetController with WidgetsBindingObserver{
 
-  Barcode? result;
-  QRViewController? qrViewController;
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
+  ScanResult? scanResult;
 
   @override
   void onInit() async {
@@ -20,7 +17,6 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
 
   @override
   void dispose() {
-    qrViewController?.dispose();
     super.dispose();
     // 移除观察者
     WidgetsBinding.instance.removeObserver(this);
@@ -31,9 +27,7 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
     super.didChangeAppLifecycleState(state);
     if(state == AppLifecycleState.resumed) {
       if (Platform.isAndroid) {
-        qrViewController?.pauseCamera();
       } else if (Platform.isIOS) {
-        qrViewController?.resumeCamera();
       }
     }
   }
@@ -42,18 +36,8 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
     Get.back();
   }
 
-  void onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
-    LogUtils.GGQ('----------扫码权限-------->>${p}');
-    if (!p) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('没有权限！')),
-      );
-    }
-  }
-  void onScanResult(Barcode result) {
-    this.result = result;
-    AudioUtils().onPlay();
-    onBack();
-    ToastUtils.show('扫描结果->${result.code}');
+  void onScanResult(ScanResult result) {
+    this.scanResult = result;
+    update(['scan']);
   }
 }
