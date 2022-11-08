@@ -19,15 +19,13 @@ class PreviewWidget extends StatelessWidget {
             child: GetBuilder<PreviewController>(
               id: 'preview',
               builder: (_) => controller.list.isEmpty ? const CircularProgressIndicator()
-                  : Container(
-                      child: PhotoViewGallery.builder(
-                          itemCount: controller.list.length,
-                          builder: (context, index) =>
-                              PhotoViewGalleryPageOptions(
-                                imageProvider:
-                                    NetworkImage(controller.list[index].url??''),
-                              )),
-                    ),
+                  : PhotoViewGallery.builder(
+                      itemCount: controller.list.length,
+                      builder: (context, index) =>
+                          PhotoViewGalleryPageOptions(
+                            imageProvider:
+                                NetworkImage(controller.list[index].url??''),
+                          )),
             ),
           ),
           Padding(

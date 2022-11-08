@@ -28,6 +28,11 @@ class AssetsProvider{
     return 'assets/video/$name.$type';
   }
 
+  /// svg
+  static String svgPath(String name, {String type = 'svg'}){
+    return 'assets/svg/$name.$type';
+  }
+
   static Future<DioResponse> loadData(String fileName) async{
      String data = await rootBundle.loadString('assets/data/$fileName.json');
      await DelayedUtils.delayed(() {

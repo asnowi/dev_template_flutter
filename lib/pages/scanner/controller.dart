@@ -41,4 +41,18 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
   void onBack() {
     Get.back();
   }
+
+  void onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
+    LogUtils.GGQ('----------扫码权限-------->>${p}');
+    if (!p) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('没有权限！')),
+      );
+    }
+  }
+  void onScanResult(Barcode result) {
+    this.result = result;
+    // onBack();
+    ToastUtils.show('扫描结果->${result.code}');
+  }
 }
