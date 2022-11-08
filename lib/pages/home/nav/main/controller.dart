@@ -4,6 +4,7 @@ import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
 import 'package:dev_template_flutter/pages/preview/widget/widget.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class MainController extends BaseGetController{
@@ -100,7 +101,14 @@ class MainController extends BaseGetController{
   }
 
   void onScan() {
-    Get.toNamed(AppRoutes.SCANNER);
+    // 申请相机权限
+    PermissionUtil.checkPermissions([Permission.photos,Permission.camera],onSuccess: () async{
+      Get.toNamed(AppRoutes.SCANNER);
+    },onFailed: () {
+      ToastUtils.show('请同意使用相机和访问照片的权限');
+    },onSetting: () {
+      UIUtils.openSettings();
+    });
   }
 
   void onLocation() {
@@ -131,7 +139,7 @@ class MainController extends BaseGetController{
     } else if(page == 2) {
       switch(index){
         case 0: {
-          ToastUtils.show('bbb');
+          ToastUtils.show('第二页（1）');
           break;
         }
         default: {

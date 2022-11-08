@@ -54,5 +54,9 @@
     </dict>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>需要您的相册使用权限</string>
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>需要您的相机权限扫描二维码</string>
 </dict>
 </plist>

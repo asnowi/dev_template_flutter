@@ -38,6 +38,27 @@ class UIUtils {
     );
   }
 
+  static IconButton onAppBarCircleBack({VoidCallback? onBack,Color? iconColor}) {
+    return IconButton(
+      onPressed: (){
+        if(onBack != null) {
+          onBack();
+        }
+      },
+      splashRadius: AppDimens.backRadius,
+      icon: Container(
+        constraints: const BoxConstraints.expand(width: 34.0,height: 34.0),
+        decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(17.0)),color: Colors.white24),
+        child: Icon(
+          Icons.arrow_back_ios,
+          color: iconColor?? Colors.black87,
+          size: 18,
+        ),
+      )
+    );
+  }
+
+
   static Color hexToColor(String? code) {
     //先判断是否符合#RRGGBB的要求如果不符合给一个默认颜色
     if (code==null||code==''|| code.length != 7) {

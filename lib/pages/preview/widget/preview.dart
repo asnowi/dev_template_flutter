@@ -34,7 +34,7 @@ class PreviewWidget extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 25.0),
             child: Positioned(
-                child: UIUtils.onAppBarBack(onBack: () => controller.onBack(),iconColor: Colors.white)),
+                child: UIUtils.onAppBarCircleBack(onBack: () => controller.onBack(),iconColor: Colors.white)),
           ),
         ],
       ),
