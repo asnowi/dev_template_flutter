@@ -28,11 +28,17 @@ class AssetsProvider{
     return 'assets/video/$name.$type';
   }
 
+  /// 本地音频
+  static String loadAudio(String name, {String type = 'mp3'}){
+    return 'assets/audio/$name.$type';
+  }
+
   /// svg
   static String svgPath(String name, {String type = 'svg'}){
     return 'assets/svg/$name.$type';
   }
 
+  /// 本地 json 数据
   static Future<DioResponse> loadData(String fileName) async{
      String data = await rootBundle.loadString('assets/data/$fileName.json');
      await DelayedUtils.delayed(() {

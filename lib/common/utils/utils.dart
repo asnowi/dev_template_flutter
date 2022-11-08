@@ -18,7 +18,7 @@ export 'time_util.dart';
 export 'toast.dart';
 export 'keyboard_utils.dart';
 export 'random_utils.dart';
-export 'audio_player_utils.dart';
+export 'audio_utils.dart';
 export 'uiutils.dart';
 
 export 'package:flutter_screenutil/flutter_screenutil.dart';

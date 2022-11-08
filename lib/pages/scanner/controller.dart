@@ -52,7 +52,8 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
   }
   void onScanResult(Barcode result) {
     this.result = result;
-    // onBack();
+    AudioUtils().onPlay();
+    onBack();
     ToastUtils.show('扫描结果->${result.code}');
   }
 }
