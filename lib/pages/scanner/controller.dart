@@ -38,6 +38,7 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
 
   void onScanResult(ScanResult result) {
     this.scanResult = result;
+    AudioUtils().onPlay();
     update(['scan']);
   }
 }

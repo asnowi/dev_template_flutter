@@ -10,7 +10,20 @@ class PreviewView extends BaseGetView<PreviewController> {
 
   @override
   Widget build(BuildContext context) {
-    return PreviewWidget(controller: controller);
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          PreviewWidget(controller: controller),
+          Padding(
+            padding:
+            const EdgeInsets.symmetric(vertical: 25.0),
+            child: Positioned(
+                child: UIUtils.onAppBarCircleBack(onBack: () => controller.onBack(),iconColor: Colors.white)),
+          ),
+        ],
+      ),
+    );
   }
 
 }

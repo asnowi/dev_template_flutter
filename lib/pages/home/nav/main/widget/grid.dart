@@ -9,7 +9,6 @@ class GridWidget extends StatelessWidget {
 
   MainController controller;
 
-
   List<Widget> _list(context) {
     return [
       _buildPageItem(1),
@@ -23,8 +22,7 @@ class GridWidget extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         alignment: Alignment.center,
-        height: 180.h,
-        color: Colors.greenAccent,
+        height: 196.h,
         child: PageView(
           scrollDirection: Axis.horizontal,
           reverse: false,
@@ -50,37 +48,24 @@ class GridWidget extends StatelessWidget {
     );
   }
   Widget _buildGridView(int page) {
-    List<String> list = getPageListLength(page);
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //设置列数
-          crossAxisCount: 3,
-          //设置横向间距
-          crossAxisSpacing: 4,
-          //设置主轴间距
-          mainAxisSpacing: 4,
-          //宽高比
-          childAspectRatio: 12/ list.length
-      ), itemBuilder: (context,index){
-      return Container(
-        alignment: Alignment.center,
-        child: MaterialButton(
-          onPressed: () => controller.onGridItem(page,index),
-          splashColor: Colors.white12,
-          highlightColor: Colors.white10,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const FlutterLogo(),
-              const Padding(padding: EdgeInsets.symmetric(vertical: 4.0)),
-              Text(list[index])
-            ],
-          ),
-        ),
-      );
-    },itemCount: list.length);
+    return Container(
+      color: Colors.grey.shade200,
+      child: GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
+        //水平子Widget之间间距
+        crossAxisSpacing: 2.0,
+        //垂直子Widget之间间距
+        mainAxisSpacing: 4.0,
+        //GridView内边距
+        padding: const EdgeInsets.symmetric(vertical: 4.0,horizontal: 2.0),
+        //一行的Widget数量
+        crossAxisCount: 3,
+        //子Widget宽高比例
+        childAspectRatio: 1.5,
+        //子Widget列表
+        children: getPageList(page).map((item) => _buildItemContainer(item)).toList(),
+      ),
+    );
   }
 
   Widget _buildIndicator(int page) {
@@ -102,8 +87,40 @@ class GridWidget extends StatelessWidget {
     );
   }
 
-  List<String> getPageListLength(int page) {
+  List<GridItem> getPageList(int page) {
     return page == 1? controller.gridList1: controller.gridList2;
   }
+
+  Widget _buildItemContainer(GridItem item) {
+    return MaterialButton(
+      splashColor: Colors.white12,
+      highlightColor: Colors.white10,
+      onPressed: () => controller.onGridItem(item),child: Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+              height: 62.h,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  image: DecorationImage(
+                    image: NetworkImage(item.url??''),
+                    fit: BoxFit.cover,
+                  ))
+          ),
+          Text(item.title??'')
+        ],
+      ),
+    ),);
+  }
+}
+
+class GridItem{
+  GridItem({Key? key,this.title,this.url});
+
+  String? title;
+  String? url;
+
 }
 
