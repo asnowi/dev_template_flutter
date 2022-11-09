@@ -13,7 +13,7 @@ class _KeepAliveWrapperState extends State<KeepAliveWrapper> with AutomaticKeepA
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return widget.child?? Container(color: Colors.grey);
+    return widget.child?? const SizedBox.shrink();
   }
 
   @override

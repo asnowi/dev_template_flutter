@@ -9,8 +9,8 @@ class SplashView extends BaseGetView<SplashController>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(),
+    return const Scaffold(
+      body: SizedBox.shrink(),
     );
   }
 }

@@ -51,7 +51,7 @@ class UnLoginWidget extends StatelessWidget {
                 constraints: constraints,
                 child: Column(
                   children: [
-                    Flexible(child: Container()),
+                    const Flexible(child: SizedBox.shrink()),
                     Flexible(
                       child: TextButton(
                         onPressed: () => controller.onLogin(),

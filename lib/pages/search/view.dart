@@ -140,7 +140,7 @@ class SearchView extends BaseGetView<SearchController> {
                 itemCount: controller.recordList?.length?? 0,
               ))
             ],
-          ): Container()
+          ): const SizedBox.shrink()
       ),
     );
   }

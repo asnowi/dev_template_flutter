@@ -52,7 +52,7 @@ class UserInfoView extends BaseGetView<UserInfoController> {
       elevation: 4.0,
       child: Padding(padding: EdgeInsets.symmetric(vertical: 10.h),child: Row(
         children: [Text('头像', style: TextStyle(color: Colors.black87, fontSize: 16.sp),),
-          Expanded(child: Container()),
+          const Expanded(child: SizedBox.shrink()),
           Container(
             constraints: BoxConstraints.tight(const Size(64, 64)),
             decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class UserInfoView extends BaseGetView<UserInfoController> {
       padding: EdgeInsets.symmetric(vertical: 15.h),
       child: Row(
         children: [Text('名称', style: TextStyle(color: Colors.black87, fontSize: 16.sp),),
-          Expanded(child: Container()),
+          const Expanded(child: SizedBox.shrink()),
           Text(
             Global.user?.nickname ?? '',
             style: TextStyle(color: Colors.black45, fontSize: 16.sp),
