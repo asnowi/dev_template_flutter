@@ -18,7 +18,6 @@ abstract class AppRoutes {
   static const USER_INFO = '/userInfo';
   static const SEARCH = '/search';
   static const LOCATION = '/location';
-  static const PREVIEW = '/preview';
   static const SCANNER = '/scanner';
 
 

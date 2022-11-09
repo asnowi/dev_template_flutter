@@ -22,10 +22,7 @@ class BannerWidget extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 margin: const EdgeInsets.all(4.0),
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4.0)),),
-                child: Image.network(
-                  controller.bannerList[index],
-                  fit: BoxFit.fill,
-                ),
+                child: ImageLoader.load(url: controller.bannerList[index]),
               );
             },
             autoplay: true,

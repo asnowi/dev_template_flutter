@@ -1,4 +1,5 @@
 import 'package:dev_template_flutter/common/utils/utils.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -100,15 +101,14 @@ class GridWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Container(
-              height: 62.h,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  image: DecorationImage(
-                    image: NetworkImage(item.url??''),
-                    fit: BoxFit.cover,
-                  ))
+          Expanded(child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Container(
+                constraints: const BoxConstraints.expand(),
+                child: ImageLoader.load(url: item.url??'',fit: BoxFit.cover),
+              )),
           ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
           Text(item.title??'')
         ],
       ),

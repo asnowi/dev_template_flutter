@@ -3,8 +3,6 @@ import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
-import 'package:dev_template_flutter/pages/preview/widget/widget.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'widget/widget.dart';
@@ -111,9 +109,6 @@ class MainController extends BaseGetController{
   }
 
   void onGridItem(GridItem item) {
-    List<Photo> photos = [
-      Photo(title: item.title,url: item.url)
-    ];
-    Get.toNamed(AppRoutes.PREVIEW,arguments: {'photos': photos});
+   ToastUtils.show(item.title);
   }
 }
