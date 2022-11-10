@@ -3,6 +3,7 @@ import 'package:dev_template_flutter/common/router/router.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/badge/badge.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
+import 'package:dev_template_flutter/common/widget/view/view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'widget/widget.dart';
@@ -108,7 +109,12 @@ class MainController extends BaseGetController{
     Get.toNamed(AppRoutes.LOCATION);
   }
 
-  void onGridItem(GridItem item) {
-   ToastUtils.show(item.title);
+  void onGridItem(BuildContext context,GridItem item) {
+    // List<String> list = [item.url??'','https://picsum.photos/id/1001/200/','https://picsum.photos/id/1002/200/'];
+    List<String> list = [item.url??''];
+    Navigator.push(context,MaterialPageRoute(builder:(_)=> PreviewWidget(
+      galleryItems:list,
+      pageChanged: (index) => LogUtils.GGQ(index.toString()),
+    )));
   }
 }

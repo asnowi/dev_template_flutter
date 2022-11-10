@@ -1,5 +1,4 @@
 import 'package:dev_template_flutter/common/utils/utils.dart';
-import 'package:dev_template_flutter/common/widget/view/view.dart';
 import 'package:dev_template_flutter/pages/home/nav/main/main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -12,8 +11,8 @@ class GridWidget extends StatelessWidget {
 
   List<Widget> _list(context) {
     return [
-      _buildPageItem(1),
-      _buildPageItem(2),
+      _buildPageItem(context,1),
+      _buildPageItem(context,2),
     ];
   }
 
@@ -40,15 +39,15 @@ class GridWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildPageItem(int page) {
+  Widget _buildPageItem(BuildContext context,int page) {
     return Stack(
       children: [
-        _buildGridView(page),
+        _buildGridView(context,page),
         _buildIndicator(page)
       ],
     );
   }
-  Widget _buildGridView(int page) {
+  Widget _buildGridView(BuildContext context,int page) {
     return Container(
       color: Colors.grey.shade200,
       child: GridView.count(
@@ -64,7 +63,7 @@ class GridWidget extends StatelessWidget {
         //子Widget宽高比例
         childAspectRatio: 1.5,
         //子Widget列表
-        children: getPageList(page).map((item) => _buildItemContainer(item)).toList(),
+        children: getPageList(page).map((item) => _buildItemContainer(context,item)).toList(),
       ),
     );
   }
@@ -92,11 +91,11 @@ class GridWidget extends StatelessWidget {
     return page == 1? controller.gridList1: controller.gridList2;
   }
 
-  Widget _buildItemContainer(GridItem item) {
+  Widget _buildItemContainer(BuildContext context,GridItem item) {
     return MaterialButton(
       splashColor: Colors.white12,
       highlightColor: Colors.white10,
-      onPressed: () => controller.onGridItem(item),child: Container(
+      onPressed: () => controller.onGridItem(context,item),child: Container(
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -105,7 +104,7 @@ class GridWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.0),
               child: Container(
                 constraints: const BoxConstraints.expand(),
-                child: ImageLoader.load(url: item.url??'',fit: BoxFit.cover),
+                child: Hero(tag: item.url??'',child: ImageLoader.load(url: item.url??'',fit: BoxFit.cover),),
               )),
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
