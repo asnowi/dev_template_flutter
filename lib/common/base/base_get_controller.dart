@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:dev_template_flutter/common/app/app.dart';
+import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/config/config.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
-import 'package:get/get.dart';
 
 class BaseGetController extends GetxController {
 
