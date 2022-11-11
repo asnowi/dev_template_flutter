@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'unknown.dart';
 
 class UnknownView extends BaseGetView<UnknownController>{
-  const UnknownView({super.key});
+  UnknownView({super.key});
 
   @override
   Widget build(BuildContext context) {

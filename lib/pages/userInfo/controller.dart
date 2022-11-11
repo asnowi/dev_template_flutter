@@ -1,7 +1,6 @@
+import 'dart:async';
 
 import 'package:dev_template_flutter/common/base/base.dart';
-import 'package:dev_template_flutter/common/db/db.dart';
-import 'package:dev_template_flutter/common/service/service.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -13,30 +12,53 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
 
   BuildContext? context;
 
+  StreamSubscription<CommonEvent>? eventSubscription;
+
   @override
   void onInit() async {
     // 注册观察者
     WidgetsBinding.instance.addObserver(this);
     isOpenSetting = false;
+    // eventSubscription = EventBusUtils.listen<CommonEvent>((event) {
+    //   LogUtils.GGQ('========EventBusUtils========>>>${event.code}');
+    //   if(EventCode.EVENT_NETWORK == event.code) {
+    //     ToastUtils.show(event.message??'');
+    //   }
+    // });
     super.onInit();
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    // 移除观察者
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
     WidgetsBinding.instance.removeObserver(this);
+    super.onClose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if(state == AppLifecycleState.resumed && isOpenSetting) {
-      if(context != null) {
+    LogUtils.GGQ('--------生命周期------state----->${state.name}');
+
+    if(state.name == AppLifecycleState.resumed.name) { // 应用可见并可响应用户操作
+      LogUtils.GGQ('--------生命周期----------->resumed');
+      if(context != null && isOpenSetting) {
         onImagePicker(context!);
       }
+    } else if(state == AppLifecycleState.inactive) { // 用户可见，但不可响应用户操作
+      LogUtils.GGQ('--------生命周期----------->inactive');
+
+    } else if(state == AppLifecycleState.paused) { // 已经暂停了，用户不可见、不可操作
+      LogUtils.GGQ('--------生命周期----------->paused');
+
+    } else if(state == AppLifecycleState.detached) { // 表示flutter引擎脱离了宿主view
+      LogUtils.GGQ('--------生命周期----------->detached');
     }
-  }
+   }
 
   void onBack() {
     Get.back();
@@ -64,5 +86,4 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
       isOpenSetting = true;
     });
   }
-
 }

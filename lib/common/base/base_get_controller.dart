@@ -27,12 +27,15 @@ class BaseGetController extends GetxController {
     super.onReady();
   }
 
-  
   @override
   void dispose() {
     super.dispose();
   }
 
+  @override
+  void onClose() {
+    super.onClose();
+  }
 
   void initPullLoading(){
     updateRefresh();

@@ -15,11 +15,11 @@ class ScannerController extends BaseGetController with WidgetsBindingObserver{
     super.onInit();
   }
 
+
   @override
-  void dispose() {
-    super.dispose();
-    // 移除观察者
+  void onClose() {
     WidgetsBinding.instance.removeObserver(this);
+    super.onClose();
   }
 
   @override

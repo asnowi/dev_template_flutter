@@ -4,7 +4,7 @@ import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'error.dart';
 
 class ErrorView extends BaseGetView<ErrorController>{
-  const ErrorView({super.key});
+  ErrorView({super.key});
 
   @override
   Widget build(BuildContext context) {

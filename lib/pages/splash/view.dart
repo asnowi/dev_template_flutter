@@ -5,7 +5,7 @@ import 'splash.dart';
 
 
 class SplashView extends BaseGetView<SplashController>{
-  const SplashView({super.key});
+  SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {

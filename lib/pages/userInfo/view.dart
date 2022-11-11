@@ -37,7 +37,6 @@ class UserInfoView extends BaseGetView<UserInfoController> {
             MDivider(indent: 15.w),
             _buildNickname(),
             MDivider(indent: 15.w),
-            _buildNickname(),
           ],
         ),
       ),

@@ -21,5 +21,6 @@ class BundleKey {
 
 class EventCode {
   static const int EVENT_LOGIN = 999;
+  static const int EVENT_NETWORK = 100;
 }
 
