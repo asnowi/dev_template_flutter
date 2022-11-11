@@ -1,3 +1,8 @@
+import 'dart:async';
+
+import 'package:dev_template_flutter/common/app/app.dart';
+import 'package:dev_template_flutter/common/config/config.dart';
+import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/state/state.dart';
 import 'package:get/get.dart';
 
@@ -16,10 +21,26 @@ class BaseGetController extends GetxController {
   bool get enablePullUp => _enablePullUp;
        set enablePullUp(bool value) => _enablePullUp = value;
 
+  bool hasNetworkState = false;
+
+  StreamSubscription<CommonEvent>? _eventSubscription;
+
   @override
   void onInit() {
+    if(hasNetworkState && (Global.isAndroid || Global.isIOS)) {
+      _eventSubscription = EventBusUtils.listen<CommonEvent>((event) {
+        LogUtils.GGQ('========EventBusUtils========>>>${event.code}');
+        if(EventCode.EVENT_NETWORK == event.code) {
+          if(!UIUtils.isEmpty(event.message)) {
+            networkChanged(event.message!);
+          }
+        }
+      });
+    }
     super.onInit();
   }
+
+  void networkChanged(String status) {}
 
 
   @override
@@ -34,6 +55,9 @@ class BaseGetController extends GetxController {
 
   @override
   void onClose() {
+    if(hasNetworkState && (Global.isAndroid || Global.isIOS)) {
+      _eventSubscription?.cancel();
+    }
     super.onClose();
   }
 

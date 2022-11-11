@@ -13,6 +13,9 @@ class MainController extends BaseGetController{
   @override
   bool get enablePullUp => true;
 
+  @override
+  bool get hasNetworkState => true;
+
   final RefreshController refreshController = RefreshController();
 
   final PageController gridPageController = PageController(initialPage: 0,viewportFraction: 1, keepPage: true);
@@ -116,5 +119,11 @@ class MainController extends BaseGetController{
       galleryItems:list,
       pageChanged: (index) => LogUtils.GGQ(index.toString()),
     )));
+  }
+
+  @override
+  void networkChanged(String status) {
+    super.networkChanged(status);
+    ToastUtils.show('main->${status}');
   }
 }

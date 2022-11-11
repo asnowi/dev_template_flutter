@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dev_template_flutter/common/base/base.dart';
 import 'package:dev_template_flutter/common/utils/utils.dart';
 import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
@@ -12,29 +10,27 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
 
   BuildContext? context;
 
-  StreamSubscription<CommonEvent>? eventSubscription;
+  @override
+  bool get hasNetworkState => true;
 
   @override
   void onInit() async {
+    LogUtils.GGQ('-------onInit----->>');
     // 注册观察者
     WidgetsBinding.instance.addObserver(this);
     isOpenSetting = false;
-    // eventSubscription = EventBusUtils.listen<CommonEvent>((event) {
-    //   LogUtils.GGQ('========EventBusUtils========>>>${event.code}');
-    //   if(EventCode.EVENT_NETWORK == event.code) {
-    //     ToastUtils.show(event.message??'');
-    //   }
-    // });
     super.onInit();
   }
 
   @override
   void onReady() {
+    LogUtils.GGQ('-------onReady----->>');
     super.onReady();
   }
 
   @override
   void onClose() {
+    LogUtils.GGQ('-------onClose----->>');
     WidgetsBinding.instance.removeObserver(this);
     super.onClose();
   }
@@ -85,5 +81,11 @@ class UserInfoController extends BaseGetController with WidgetsBindingObserver {
       UIUtils.openSettings();
       isOpenSetting = true;
     });
+  }
+
+  @override
+  void networkChanged(String status) {
+    super.networkChanged(status);
+    ToastUtils.show('userInfo->${status}');
   }
 }

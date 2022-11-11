@@ -6,8 +6,8 @@ import 'userInfo.dart';
 class UserInfoBinding extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut<UserInfoController>(() => UserInfoController());
-
+    // Get.lazyPut<UserInfoController>(() => UserInfoController());
+    Get.put<UserInfoController>(UserInfoController());
   }
 
 }
