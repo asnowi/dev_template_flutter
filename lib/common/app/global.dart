@@ -8,6 +8,7 @@ import 'package:dev_template_flutter/common/widget/dialog/dialog.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+
 ///全局初始化
 class Global{
 
